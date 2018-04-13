@@ -24,3 +24,5 @@
 <hr/>
 
 <input class="btn btn-primary" type="submit" value="Save">
+
+<hr>

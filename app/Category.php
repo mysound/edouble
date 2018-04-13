@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Support\Str;
 
 class Category extends Model
@@ -18,5 +17,10 @@ class Category extends Model
     public function children()
     {
     	return $this->hasMany('App\Category', 'parent_id');
+    }
+
+    public function products()
+    {
+    	return $this->hasMany(Product::class);
     }
 }
