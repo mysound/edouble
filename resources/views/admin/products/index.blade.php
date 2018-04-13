@@ -3,12 +3,12 @@
 @section('content')
 	<div class="container panel panel-default">
 		@component('admin.components.breadcrumb')
-			@slot('title') Category List @endslot
+			@slot('title') Product List @endslot
 			@slot('parent') Main @endslot
-			@slot('active') Categories @endslot
+			@slot('active') Products @endslot
 		@endcomponent
 		<hr>
-		<a href="{{ route('admin.category.create') }}" class="btn btn-primary pull-right">Add Category</a>
+		<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right">Add Product</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Title</th>
@@ -16,15 +16,15 @@
 				<th class="text-right">Action</th>
 			</thead>
 			<tbody>
-				@forelse($categories as $category)
+				@forelse($products as $product)
 					<tr>
-						<td>{{ $category->title }}</td>
-						<td>{{ $category->published }}</td>
+						<td>{{ $product->title }}</td>
+						<td>{{ $product->published }}</td>
 						<td class="text-right">
-							<form method="POST" action="{{ route('admin.category.destroy', $category) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
+							<form method="POST" action="{{ route('admin.product.destroy', $product) }}" onsubmit="if(confirm('Delete?')){ return true }else{ return false }">
 								{{ csrf_field() }}
 								{{ method_field('DELETE') }}
-								<a class="btn btn-default" href="{{ route('admin.category.edit', $category->id) }}"><i class="fa fa-edit"></i></a>
+								<a class="btn btn-default" href="{{ route('admin.product.edit', $product->id) }}"><i class="fa fa-edit"></i></a>
 								<button type="submit" class="btn"><i class="fa fa-trash-o"></i></button>
 							</form>
 						</td>
@@ -38,7 +38,7 @@
 			<tfoot>
 				<tr>
 					<td colspan="3">
-						<ul class="pagination pull-right">{{ $categories->links() }}</ul>
+						<ul class="pagination pull-right">{{ $products->links() }}</ul>
 					</td>
 				</tr>
 			</tfoot>

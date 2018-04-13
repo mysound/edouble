@@ -1,7 +1,7 @@
 @extends('admin.layouts.app_admin')
 
 @section('content')
-	<div class="container">
+	<div class="container panel panel-default">
 		@component('admin.components.breadcrumb')
 			@slot('title') Creating a category @endslot
 			@slot('parent') Main @endslot
