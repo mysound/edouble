@@ -39,13 +39,13 @@
 <label for="">Price</label>
 <input class="form-control" type="text" name="price" placeholder="price" value="{{ $product->price or "" }}" required="">
 
-<label for="">Mew Title</label>
+<label for="">Meta Title</label>
 <input class="form-control" type="text" name="meta_title" placeholder="meta title" value="{{ $product->meta_title or "" }}" required="">
 
-<label for="">Mew Description</label>
+<label for="">Meta Description</label>
 <input class="form-control" type="text" name="meta_description" placeholder="meta description" value="{{ $product->meta_description or "" }}" required="">
 
-<label for="">Mew Keyword</label>
+<label for="">Meta Keyword</label>
 <input class="form-control" type="text" name="meta_keyword" placeholder="meta keyword, separate by comma" value="{{ $product->meta_keyword or "" }}" required="">
 
 <hr/>
