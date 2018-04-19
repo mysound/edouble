@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
-	protected $fillable = ['category_id', 'title', 'name', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'image', 'price', 'upc', 'release_date', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword', 'created_by', 'modified_by'];
+	protected $fillable = ['category_id', 'title', 'name', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'price', 'upc', 'release_date', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword', 'created_by', 'modified_by'];
 
 	public function setSlugAttribute($value)
 	{
@@ -17,5 +17,13 @@ class Product extends Model
     public function category()
     {
     	return $this->belongsTo(Category::class);
+    }
+    /**
+     * Get all of the product's images.
+     * Polymorphic Relations
+     */
+    public function images()
+    {
+    	return $this->morphMany('App\Image', 'imageable');
     }
 }

@@ -24,6 +24,9 @@
 <label for="">Slug</label>
 <input class="form-control" type="text" name="slug" placeholder="Automatically created" value="{{ $product->slug or "" }}" readonly="">
 
+<label for="image">Photos</label>
+<input class="form-control" type="file" name="image[]" id="image" multiple>
+
 <label for="">Short Description</label>
 <input class="form-control" type="text" name="short_description" placeholder="product short description" value="{{ $product->short_description or "" }}" required="">
 

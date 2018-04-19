@@ -8,7 +8,7 @@
 			@slot('active') Products @endslot
 		@endcomponent
 		<hr>
-		<form method="POST" class="form-horizontal" action="{{ route('admin.product.store') }}">
+		<form method="POST" class="form-horizontal" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
 			{{ csrf_field() }}
 
 			{{-- Form include --}}
