@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Product;
 use App\Category;
+use App\Image;
+use Intervention\Image\Facades\Image as ImageInt;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Storage;
 
 class ProductsController extends Controller
 {
@@ -43,7 +46,23 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
+        $product = Product::create($request->all());
+
+        if(request()->hasFile('image')) {
+            $files = request()->file('image');
+
+            foreach ($files as $file) {
+                $image = time() . '.' . $file->getClientOriginalExtension();
+                $picture = ImageInt::make($file)
+                    ->resize(400, null, function ($constraint) { $constraint->aspectRatio(); } )
+                    ->encode('jpg',100);
+                Storage::disk('images')->put($image, $picture);
+                $picture->destroy();
+                $product->images()->create([
+                    'title' => $image
+                ]);
+            }
+        }
 
         return redirect()->route('admin.product.index');
     }

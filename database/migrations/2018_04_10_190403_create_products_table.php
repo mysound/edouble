@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
-            $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
             $table->string('upc')->nullable();;
             $table->date('release_date')->nullable();;
