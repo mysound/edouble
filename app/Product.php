@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image as ImageInt;
+use Storage;
 
 class Product extends Model
 {
@@ -25,5 +27,21 @@ class Product extends Model
     public function images()
     {
     	return $this->morphMany('App\Image', 'imageable');
+    }
+
+    public function addImage($files)
+    {
+        $i = 0;
+        foreach ($files as $file) {
+            $imagetitle = str_slug($this->title . ' ' . $this->name . ' ' . time(), '-') . $i++ . '.' . $file->getClientOriginalExtension();
+            $picture = ImageInt::make($file)
+                ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
+                ->encode('jpg',100);
+            Storage::disk('images')->put($imagetitle, $picture);
+            $picture->destroy();
+            $this->images()->create([
+                'title' => $imagetitle
+            ]);
+        }
     }
 }

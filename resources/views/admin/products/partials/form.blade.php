@@ -1,3 +1,5 @@
+@include('admin.layouts.errors_admin')
+
 <label for="">Status</label>
 <select class="form-control" name="published">
 	@if(isset($product->id))
@@ -28,28 +30,28 @@
 <input class="form-control" type="file" name="image[]" id="image" multiple>
 
 <label for="">Short Description</label>
-<input class="form-control" type="text" name="short_description" placeholder="product short description" value="{{ $product->short_description or "" }}" required="">
+<input class="form-control" type="text" name="short_description" placeholder="product short description" value="{{ $product->short_description or "" }}" >
 
 <label for="">Description</label>
 <textarea class="form-control" type="text" name="description" placeholder="product description">{{ $product->description or "" }}</textarea>
 
 <label for="">UPC</label>
-<input class="form-control" type="text" name="upc" placeholder="UPC" value="{{ $product->upc or "" }}" required="">
+<input class="form-control" type="text" name="upc" placeholder="UPC" value="{{ $product->upc or "" }}" >
 
 <label for="">Release Date</label>
-<input class="form-control" type="text" name="release_date" placeholder="release date" value="{{ $product->release_date or "" }}" required="">
+<input class="form-control" type="text" name="release_date" placeholder="release date" value="{{ $product->release_date or "" }}" >
 
 <label for="">Price</label>
 <input class="form-control" type="text" name="price" placeholder="price" value="{{ $product->price or "" }}" required="">
 
 <label for="">Meta Title</label>
-<input class="form-control" type="text" name="meta_title" placeholder="meta title" value="{{ $product->meta_title or "" }}" required="">
+<input class="form-control" type="text" name="meta_title" placeholder="meta title" value="{{ $product->meta_title or "" }}" >
 
 <label for="">Meta Description</label>
-<input class="form-control" type="text" name="meta_description" placeholder="meta description" value="{{ $product->meta_description or "" }}" required="">
+<input class="form-control" type="text" name="meta_description" placeholder="meta description" value="{{ $product->meta_description or "" }}" >
 
 <label for="">Meta Keyword</label>
-<input class="form-control" type="text" name="meta_keyword" placeholder="meta keyword, separate by comma" value="{{ $product->meta_keyword or "" }}" required="">
+<input class="form-control" type="text" name="meta_keyword" placeholder="meta keyword, separate by comma" value="{{ $product->meta_keyword or "" }}" >
 
 <hr/>
 
