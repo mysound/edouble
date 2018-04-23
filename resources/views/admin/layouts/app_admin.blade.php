@@ -42,6 +42,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('admin.category.index') }}">Categories</a></li>
                                 <li><a href="{{ route('admin.product.index') }}">Products</a></li>
+                                <li><a href="{{ route('admin.ganre.index') }}">Ganres</a></li>
                             </ul>
                         </li>
                     </ul>

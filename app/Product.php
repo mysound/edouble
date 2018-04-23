@@ -20,6 +20,11 @@ class Product extends Model
     {
     	return $this->belongsTo(Category::class);
     }
+
+    public function ganre()
+    {
+        return $this->belongsTo(Ganre::class);
+    }
     /**
      * Get all of the product's images.
      * Polymorphic Relations
