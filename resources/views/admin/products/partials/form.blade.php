@@ -12,8 +12,8 @@
 </select>
 
 <label for="">Category</label>
-<select class="form-control" name="category_id">
-	<option value="0">-- without parent category --</option>
+<select class="form-control" name="category_id" required="">
+	<option value="0" disabled="">-- without parent category --</option>
 	@include('admin.products.partials.categories', ['categories' => $categories])
 </select>
 
@@ -22,6 +22,12 @@
 
 <label for="">Name</label>
 <input class="form-control" type="text" name="name" placeholder="product name" value="{{ $product->name or "" }}" required="">
+
+<label for="">Ganre</label>
+<select class="form-control" name="ganre_id" required="">
+	<option value="0">-- without ganre --</option>
+	@include('admin.products.partials.ganres', ['ganres' => $ganres])
+</select>
 
 <label for="">Slug</label>
 <input class="form-control" type="text" name="slug" placeholder="Automatically created" value="{{ $product->slug or "" }}" readonly="">
