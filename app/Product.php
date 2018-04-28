@@ -49,4 +49,12 @@ class Product extends Model
             ]);
         }
     }
+
+    public function deleteImage()
+    {
+        foreach ($this->images as $image) {
+            Storage::disk('images')->delete($image->title);
+            $image->delete();
+        }
+    }
 }

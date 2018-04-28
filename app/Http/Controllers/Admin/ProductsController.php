@@ -100,7 +100,23 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+
+        $this->validate(request(), [
+            'title' =>  'required',
+            'name'  =>  'required',
+            'price' =>  'required|numeric',
+            'image.*' =>  'sometimes|image'
+        ]);
+
         $product->update($request->except('slug'));
+
+        if(request()->hasFile('image')) {
+            $product->deleteImage();
+            
+            $files = request()->file('image');
+
+            $product->addImage($files);
+        }
 
         return redirect()->route('admin.product.index');
     }
@@ -113,6 +129,10 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->images->isNotEmpty()) {
+            $product->deleteImage();
+        }
+        
         $product->delete();
 
         return redirect()->route('admin.product.index');
