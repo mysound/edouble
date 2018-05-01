@@ -25,6 +25,11 @@ class Product extends Model
     {
         return $this->belongsTo(Ganre::class);
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
     /**
      * Get all of the product's images.
      * Polymorphic Relations
