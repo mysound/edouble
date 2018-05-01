@@ -23,6 +23,12 @@
 <label for="">Name</label>
 <input class="form-control" type="text" name="name" placeholder="product name" value="{{ $product->name or "" }}" required="">
 
+<label for="">Brand/Label</label>
+<select class="form-control" name="brand_id" required="">
+	<option value="0">-- without brand --</option>
+	@include('admin.products.partials.brands', ['brands' => $brands])
+</select>
+
 <label for="">Ganre</label>
 <select class="form-control" name="ganre_id" required="">
 	<option value="0">-- without ganre --</option>

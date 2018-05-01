@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Product;
 use App\Category;
+use App\Brand;
 use App\Ganre;
 use App\Image;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class ProductsController extends Controller
         return view('admin.products.create', [
             'product'   => [],
             'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'brands' => Brand::all(),
             'ganres' => Ganre::all(),
             'separator'  => ''
         ]);
@@ -86,6 +88,7 @@ class ProductsController extends Controller
         return view('admin.products.edit', [
             'product'   => $product,
             'categories' => Category::with('children')->where('parent_id', '0')->get(),
+            'brands' => Brand::all(),
             'ganres' => Ganre::all(),
             'separator'  => ''
         ]);
