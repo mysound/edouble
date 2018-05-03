@@ -10,7 +10,7 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="jumbotron">
-					<p><span class="label label-primary">Products 0</span></p>
+					<p><span class="label label-primary">Products {{ $countpro }}</span></p>
 				</div>
 			</div>
 			<div class="col-sm-3">
