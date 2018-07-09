@@ -8,7 +8,8 @@
 			@slot('active') Products @endslot
 		@endcomponent
 		<hr>
-		<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right">Add Product</a>
+		<a href="{{ route('admin.upload.create') }}" class="btn btn-success"><i class="fa fa-upload"></i> ...Excel</a>
+		<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Product</a>
 		<table class="table table-striped">
 			<thead>
 				<th>Title</th>
