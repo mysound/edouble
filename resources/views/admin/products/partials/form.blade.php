@@ -12,7 +12,7 @@
 </select>
 
 <label for="">Category</label>
-<select class="form-control" name="category_id" required="">
+<select class="form-control" name="category_id">
 	<option value="0" disabled="">-- without parent category --</option>
 	@include('admin.products.partials.categories', ['categories' => $categories])
 </select>
