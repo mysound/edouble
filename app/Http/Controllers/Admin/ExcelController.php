@@ -30,6 +30,7 @@ class ExcelController extends Controller
                 ]);*/
                 $product = \App\Product::create([
                     'category_id' => $data[0],
+                    'sku' => $data[4],
                     'title' => $data[1],
                     'name' => $data[2],
                     'price' => $data[3],

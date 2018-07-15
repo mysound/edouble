@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id');
+            $table->string('sku')->unique();
             $table->string('title');
             $table->string('name');
             $table->string('brand_id')->nullable();
@@ -24,8 +25,9 @@ class CreateProductsTable extends Migration
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
-            $table->string('upc')->nullable();;
-            $table->date('release_date')->nullable();;
+            $table->string('upc')->nullable();
+            $table->integer('quantity')->default(0);
+            $table->date('release_date')->nullable();
             $table->boolean('availability')->nullable();
             $table->boolean('published')->nullable();
             $table->boolean('new_product')->nullable();
