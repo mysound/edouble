@@ -17,27 +17,25 @@ class ExcelController extends Controller
     public function importExcel()
     {	
     	if(request()->hasFile('importExcel')) {
-            /*$file = request()->file('importExcel');*/
             $file = fopen(request()->file('importExcel'),"r");
             fgetcsv($file);
             while ($data = fgetcsv($file, 1000, ";")) {
-                /*$product = DB::table('products')->insert([
-                    'category_id' => $data[0],
-                    'title' => $data[1],
-                    'name' => $data[2],
-                    'price' => $data[3],
-                    'slug' => $data[0].'slug'
-                ]);*/
-                $product = \App\Product::create([
-                    'category_id' => $data[0],
-                    'sku' => $data[4],
-                    'title' => $data[1],
-                    'name' => $data[2],
-                    'price' => $data[3],
-                    'slug' => $data[0].'slug'
-                ]);
+                $product = \App\Product::updateOrCreate(
+                    [
+                        'sku' => $data[0]
+                    ],
+                    [
+                        'sku' => $data[0],
+                        'title' => $data[1],
+                        'name' => $data[2],
+                        'price' => $data[3],
+                        'quantity' => $data[4],
+                        'upc' => $data[5],
+                        'category_id' => $data[6],
+                        'slug' => ''
+                    ]
+                );
             }
-    		//dd(fgetcsv($file));
     	}
     	return "ok upload Excel";
     }
