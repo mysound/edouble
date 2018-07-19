@@ -23,7 +23,11 @@
 			<tbody>
 				@forelse($products as $product)
 					<tr>
-						<td><img class="img" src="{{ asset('storage/images/' . $product->images->first()["title"]) }}" width="35"></td>
+						<td>
+							@if($product->images->first()["title"] != "") 
+								<img class="img" src="{{ asset('storage/images/' . $product->images->first()["title"]) }}" width="35"> 
+							@endif
+						</td>
 						<td>{{ $product->title }}</td>
 						<td>{{ $product->name }}</td>
 						<td>{{ $product->quantity }}</td>
