@@ -13,7 +13,7 @@ $panel-inner-border: $laravel-border-color;
 $brand-primary: #3097D1;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
-$brand-warning: #cbb956;
+/*$brand-warning: #cbb956;*/
 $brand-danger: #bf5329;
 
 // Typography
@@ -36,3 +36,7 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+$grid-gutter-width: 10px;
+$container-large-desktop: (990px + $grid-gutter-width);
+$container-lg: container-md;

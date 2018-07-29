@@ -1,0 +1,317 @@
+.b-page {
+	background: #ccc;
+}
+
+/*Header*/
+/*--Navigation*/
+
+.navbar {
+	border-radius: 0;
+}
+
+.logo-header {
+	height: 51px;
+	width: 51px;
+	position: relative; 
+	bottom: 15px;
+}
+
+/*Content*/
+
+.b-slider__line, .b-shopmain__line, .b-item__line, .b-cart__line {
+	margin-top: 73px;
+}
+
+.jumbotron_shipping_img {
+	width: 27px;
+}
+
+.b-main-line__title {
+	background-color: #eee;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.b-main-line__title a {
+	text-decoration: none;
+}
+
+.b-main__item {
+	background: #fff;
+	margin: 0 0 10px;
+	padding: 10px;
+	border: #f3f3f3 1px solid; 
+	border-radius: 3px;
+	min-height: 340px;
+}
+
+.b-main__item img {
+	max-width: 100%;
+}
+
+.b-main-item-img {
+	max-width: 140px;
+	max-height: 140px;
+}
+
+/*Footer*/
+
+.bs-docs-footer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 100px;
+    color: #99979c;
+    background-color: #2a2730;
+}
+
+.bs-docs-footer-links {
+	text-align: left;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.bs-docs-footer-links li {
+    display: inline-block;
+    margin: 0 30px 0 0;
+}
+
+.bs-docs-footer a {
+    color: #fff;
+}
+
+.socials_media {
+	text-align: right;
+}
+
+.icon-fb {
+	display: inline-block;
+    width: 29px;
+    height: 29px;
+    margin-right: 14px;
+    background: url(/storage/images/icons/social_media.png) no-repeat -43px 0px;
+}
+
+.icon-paypal {
+	display: inline-block;
+    width: 100px;
+    height: 26px;
+    margin-right: 14px;
+    background: url(https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png) no-repeat;
+}
+
+/*Shop*/
+
+.b-breadcrumbs {
+	color: #979797;
+    font-size: 13px;
+}
+
+.b-breadcrumbs a {
+	text-decoration: none;
+}
+
+.splitterline-bottom {
+	margin-bottom: 15px;
+	border-bottom: 1px dashed #d8d8d8;
+}
+
+.splitterline-top {
+	margin-top: 15px;
+	border-top: 1px dashed #d8d8d8;
+}
+
+.splitterline {
+	margin-bottom: 15px;
+	border-top: 1px dashed #d8d8d8;
+	border-bottom: 1px dashed #d8d8d8;
+}
+
+.searchres_title {
+	display: block; 
+	margin-top: 13px; 
+	margin-left: 10px;
+}
+
+.b-sortby {
+	margin-top: 10px;
+	margin-bottom: 10px; 
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.b-filter {
+	height: 1110px;
+}
+
+.pagenav {
+	text-align: right;
+	margin-top: -10px;
+	margin-bottom: -14px;
+}
+
+.b-search-categories {
+	background: #f7f7f7;
+	padding: 8px;
+}
+
+.b-searh-title {
+	padding-left: 10px;
+	border-top: none;
+}
+
+.b-search__checkbox li{
+	padding: 3px;
+	font-size: 13px;
+}
+
+.b-priceField {
+	padding: 0 10px;
+	font-size: 12px;
+}
+
+.priceField {
+	height: 23px; 
+	width: 75px;
+}
+
+.b-search__button {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+/*View Product*/
+
+.b-item__title, .b-cart__title {
+	border-bottom: 1px solid #e9e6e3;
+}
+
+.b-item-img {
+	max-width: 400px;
+	max-height: 400px;
+}
+
+.b-gallery {
+	margin-top: 10px;
+}
+
+.gallery__img {
+    margin: 0 14px 15px 0;
+    cursor: pointer;
+}
+
+.b-param ul {
+	list-style: none;
+}
+
+.b-param li {
+	margin-bottom: 4px;
+}
+
+.b-param span {
+	font-weight: bold;
+}
+
+.b-param__list {
+	padding-left: 15px;
+}
+
+.instock {
+	color: green;
+}
+
+.b-item-addtocart {
+	margin-bottom: 15px;
+}
+
+.b-addtocart {
+	background: #fef7da;
+	padding: 10px 0 22px;
+}
+
+.btn-addbtn {
+	text-transform: uppercase;
+	min-width: 200px;
+}
+
+.free-shipping {
+	margin-top: 5px;
+	background: #47c1e6;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.b-description__line {
+	margin-top: 45px;
+	border-bottom: 1px solid #e9e6e3;
+}
+
+.b-description {
+	padding: 30px 10px;
+}
+
+.b-also__line {
+	margin-top: 15px;
+}
+
+
+/*Cart page*/
+.b-cart__step {
+	margin: 15px 0;
+	padding: 6px 15px;
+	background: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 20px;
+	color: #999999;
+}
+
+.t-btnrem {
+	font-size: 5px;
+}
+
+.t-btnrem > span {
+	font-size: 9px; color: #d9534f;
+}
+
+.inputqty {
+	text-align:center; border:1px solid #ddd; border-radius: 4px;
+}
+
+.t-btnref {
+	font-size: 5px; margin-top: 2px; width: 41px;
+}
+
+.t-btnref > span {
+	font-weight: bold; font-size: 9px; color: #337ab7;
+}
+
+.cart-tabel {
+	border: 1px solid #ddd;
+}
+
+.b-shipping-form {
+	margin-bottom: 10px;
+}
+
+.shippingtable {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.btnshippingupdate {
+	font-weight: bold; width: 30px;
+}
+
+.b-shipping-separator {
+	border-right: 1px solid #ddd; 
+	min-height: 80px;
+}
+
+.b-btnpaypal__line {
+	text-align: center;
+}
+
+.btnpaypal input {
+	cursor: pointer;
+}

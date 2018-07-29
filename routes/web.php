@@ -21,9 +21,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/upload', 'ExcelController@importExcel')->name('admin.upload.store');
 });
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
