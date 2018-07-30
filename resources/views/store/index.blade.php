@@ -84,141 +84,35 @@
 	<div class="container b-main__line">
 		<div class="b-main-line__title thumbnail"><span class="h3"><a href="#">Vinyl</a></span></div>
 		<div class="row">
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
+			@foreach($lps as $lp)
+				<div class="col-xs-6 col-sm-4 col-md-3">
+					<div class="b-main__item center-block text-center">
+						<div class="b-main-item-img center-block">
+							<a href="#"><img src="{{ asset('storage/images/' . $lp->images->first()["title"]) }}"></a>
+						</div>
+						<a href="#"><h5>{{ $lp->title }}</h5></a>
+						<a href="#"><h5>{{ $lp->name }}</h5></a>
+						<p class="h4">${{ $lp->price }}</p>
+						<button type="button" class="btn btn-warning">Buy Now</button>
 					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
 				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/pinkfloyd.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/metallica2.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/gilmour.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/metallica2.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/gilmour.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-4 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/pinkfloyd.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
+			@endforeach
 		</div>
 		<div class="b-main-line__title thumbnail"><span class="h3"><a href="#">CD, DVD & Blu-Ray</a></span></div>
 		<div class="row">
-			<div class="col-xs-6 col-sm-6 col-md-3">
+			@foreach($discs as $disc)
+				<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="b-main__item center-block text-center">
 					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
+						<a href="#"><img src="{{ asset('storage/images/' . $disc->images->first()["title"]) }}"></a>
 					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
+					<a href="#"><h5>{{ $disc->title }}</h5></a>
+					<a href="#"><h5>{{ $disc->name }}</h5></a>
+					<p class="h4">${{ $disc->price }}</p>
 					<button type="button" class="btn btn-warning">Buy Now</button>
 				</div>
 			</div>
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
-			<div class="col-xs-6 col-sm-6 col-md-3">
-				<div class="b-main__item center-block text-center">
-					<div class="b-main-item-img center-block">
-						<a href="#"><img src="img/hotel.jpg"></a>
-					</div>
-					<a href="#"><h5>The Eagles</h5></a>
-					<a href="#"><h5>Hotel California</h5></a>
-					<p class="h4">$25.99</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
-				</div>
-			</div>
+			@endforeach
 		</div>
 	</div>
 	
