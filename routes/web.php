@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::resource('/product', 'ProductsController', ['as' => 'admin']);
 	Route::resource('/ganre', 'GanresController', ['as' => 'admin']);
 	Route::resource('/brand', 'BrandsController', ['as' => 'admin']);
+	Route::resource('/slide', 'SlidesController', ['as' => 'admin']);
 	Route::get('/upload/create', 'ExcelController@create')->name('admin.upload.create');
 	Route::post('/upload', 'ExcelController@importExcel')->name('admin.upload.store');
 });
