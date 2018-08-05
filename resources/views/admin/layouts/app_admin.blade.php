@@ -46,6 +46,7 @@
                                 <li><a href="{{ route('admin.brand.index') }}">Brands</a></li>
                             </ul>
                         </li>
+                        <li><a href="{{ route('admin.slide.index') }}">Slider</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

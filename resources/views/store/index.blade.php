@@ -54,6 +54,7 @@
 		<div class="row">
 			<div class="col-md-6 b-slider-line__jumbotron">
 				<div class="jumbotron b-slider-line-jumbotron">
+					<h3>DoubleSides</h3>
 					<p>EXCLUSIVE VINYL & CDs</p>
 					<p><img src="{{ asset('storage/images/icons/shipping.ico') }}" class="jumbotron_shipping_img"> Free Shipping</p>
 				</div>
@@ -61,20 +62,17 @@
 			<div class="col-md-6 b-slider-line-slider">
 				<div class="carousel slide" id="myslider" data-ride="carousel">
 					<ol class="carousel-indicators">
-						<li data-target="#myslider" data-slide-to="0" class="active"></li>
-						<li data-target="#myslider" data-slide-to="1"></li>
-						<li data-target="#myslider" data-slide-to="2"></li>
+						@for($i = 0; $i < $slides->count(); $i++)
+							<li data-target="#myslider" data-slide-to="{{ $i }}" class="{{ $i == 0 ? 'active' : '' }}"></li>
+						@endfor
 					</ol>
+
 					<div class="carousel-inner thumbnail">
-						<div class="item active">
-							<img src="img/metallica.jpg">
-						</div>
-						<div class="item">
-							<img src="img/stranger.jpg">
-						</div>
-						<div class="item">
-							<img src="img/beatles.jpg">
-						</div> 	
+						@foreach($slides as $key => $slide)
+							<div class="item {{ $key == 0 ? 'active' : '' }}">
+								<a href="#"><img src="{{ asset('storage/images/' . $slide->images->first()["title"]) }}"></a>
+							</div>
+						@endforeach
 					</div>
 				</div>
 			</div>
