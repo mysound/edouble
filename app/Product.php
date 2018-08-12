@@ -9,7 +9,7 @@ use Storage;
 
 class Product extends Model
 {
-	protected $fillable = ['category_id', 'sku', 'title', 'name', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'price', 'upc', 'quantity', 'release_date', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword', 'created_by', 'modified_by'];
+	protected $fillable = ['category_id', 'sku', 'name', 'title', 'brand_id', 'ganre_id',  'slug', 'short_description', 'description', 'price', 'upc', 'quantity', 'release_date', 'availability', 'published', 'new_product', 'meta_title', 'meta_description', 'meta_keyword', 'created_by', 'modified_by'];
 
 	public function setSlugAttribute($value)
 	{
