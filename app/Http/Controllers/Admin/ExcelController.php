@@ -26,8 +26,8 @@ class ExcelController extends Controller
                     ],
                     [
                         'sku' => $data[0],
-                        'title' => $data[1],
-                        'name' => $data[2],
+                        'name' => ucwords(strtolower($data[1])),
+                        'title' => ucwords(strtolower($data[2])),
                         'price' => $data[3],
                         'quantity' => $data[4],
                         'upc' => $data[5],

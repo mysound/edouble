@@ -17,11 +17,11 @@
 	@include('admin.products.partials.categories', ['categories' => $categories])
 </select>
 
-<label for="">Title</label>
-<input class="form-control" type="text" name="title" placeholder="product title" value="{{ $product->title or "" }}" required="">
-
-<label for="">Name</label>
+<label for="">Name / Artist</label>
 <input class="form-control" type="text" name="name" placeholder="product name" value="{{ $product->name or "" }}" required="">
+
+<label for="">Title / Album</label>
+<input class="form-control" type="text" name="title" placeholder="product title" value="{{ $product->title or "" }}" required="">
 
 <label for="">Brand/Label</label>
 <select class="form-control" name="brand_id" required="">

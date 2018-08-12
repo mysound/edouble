@@ -13,8 +13,8 @@
 		<table class="table table-striped">
 			<thead>
 				<th></th>
+				<th>Name / Artist</th>
 				<th>Title</th>
-				<th>Name</th>
 				<th>Quantity</th>
 				<th>Price</th>
 				<th>Published</th>
@@ -28,8 +28,8 @@
 								<img class="img" src="{{ asset('storage/images/' . $product->images->first()["title"]) }}" width="35"> 
 							@endif
 						</td>
-						<td>{{ $product->title }}</td>
 						<td>{{ $product->name }}</td>
+						<td>{{ $product->title }}</td>
 						<td>{{ $product->quantity }}</td>
 						<td>$ {{ $product->price }}</td>
 						<td>{{ $product->published }}</td>
