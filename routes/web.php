@@ -28,3 +28,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/store/view/{product}', 'StoreController@itemView')->name('product.view');
+Route::get('/store', 'StoreController@shope');
+Route::get('/store/{ganre}', 'StoreController@ganreSearch');
+Route::post('/store', 'StoreController@search')->name('store.search');
