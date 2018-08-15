@@ -15,19 +15,18 @@
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="botton" aria-haspopup="true" aria-expanded="false">Genres<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							@foreach ($ganres as $ganre)
-								<li><a href="#">{{ $ganre->title }}</a></li>
+								<li><a href="{{ url('/store/' . $ganre->id) }}">{{ $ganre->title }}</a></li>
 							@endforeach
 						</ul>
 					</li>
-					<li><a href="#">Shop</a></li>
-					<li><a href="#">New Arrivals</a></li>
-					<li><a href="#">Pre-Order</a></li>
+					<li><a href="{{ url('/store') }}">Shop</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
 				<button class="btn btn-warning navbar-btn navbar-right"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">3</span></button>
-				<form class="navbar-form navbar-right" role="search">
+				<form method="POST" action="{{ route('store.search') }}" class="navbar-form navbar-right" role="search">
+					{{ csrf_field() }}
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" name="searchField" placeholder="Search">
 						<span class="input-group-btn">
 							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 						</span>

@@ -13,4 +13,26 @@ class StoreController extends Controller
     		'items' => Product::all()->random(4)
     	]);
     }
+
+    public function shope()
+    {
+    	return view('store.search', [
+    		'products' => Product::paginate(9)
+    	]);
+    }
+
+    public function ganreSearch($id)
+    {
+        $ganre_id = $id;
+        return view('store.search', [
+            'products' => Product::where('ganre_id', '=', $ganre_id)->paginate(9)
+        ]);
+    }
+
+    public function search(Request $request) 
+    {
+    	return view('store.search', [
+    		'products' => Product::where('name', 'LIKE', '%' . $request->searchField. '%')->paginate(9)
+    	]);
+    }
 }
