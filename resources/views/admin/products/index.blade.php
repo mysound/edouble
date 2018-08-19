@@ -25,7 +25,7 @@
 					<tr>
 						<td>
 							@if($product->images->first()["title"] != "") 
-								<img class="img" src="{{ asset('storage/images/' . $product->images->first()["title"]) }}" width="35"> 
+								<img class="img" src="{{ asset('storage/images/thumbnails/' . $product->images->first()["title"]) }}" width="35"> 
 							@endif
 						</td>
 						<td>{{ $product->name }}</td>
