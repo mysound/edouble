@@ -47,8 +47,13 @@ class Product extends Model
             $picture = ImageInt::make($file)
                 ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
                 ->encode('jpg',100);
+            $thumbnail = ImageInt::make($file)
+                ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
+                ->encode('jpg',100);    
             Storage::disk('images')->put($imagetitle, $picture);
+            Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
             $picture->destroy();
+            $thumbnail->destroy();
             $this->images()->create([
                 'title' => $imagetitle
             ]);
@@ -59,6 +64,7 @@ class Product extends Model
     {
         foreach ($this->images as $image) {
             Storage::disk('images')->delete($image->title);
+            Storage::disk('thumbnails')->delete($image->title);
             $image->delete();
         }
     }

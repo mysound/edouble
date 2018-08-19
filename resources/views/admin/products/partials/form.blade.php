@@ -23,6 +23,9 @@
 <label for="">Title / Album</label>
 <input class="form-control" type="text" name="title" placeholder="product title" value="{{ $product->title or "" }}" required="">
 
+<label for="">SKU</label>
+<input class="form-control" type="text" name="sku" placeholder="SKU" value="{{ $product->sku or "" }}" >
+
 <label for="">Brand/Label</label>
 <select class="form-control" name="brand_id" required="">
 	<option value="0">-- without brand --</option>

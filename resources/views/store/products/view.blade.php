@@ -33,11 +33,11 @@
 			<div class="col-sm-6 col-md-4 col-md-pull-3 b-item-param">
 				<div class="b-param">
 					<ul class="b-param__list">
-						<li><span>Label:</span> Parlophone</li>
-						<li><span>Genre:</span> Rock</li>
-						<li><span>Description:</span> 180 Gram Vinyl 2 LP - Sealed </li>
+						<li><span>Label: </span>{{ $product->brand->title or ""}}</li>
+						<li><span>Genre: </span>{{ $product->ganre->title or "" }}</li>
+						<li><span>Description: </span>{{ $product->short_description or "" }}</li>
 						<li><span>Release Date</span>: 2016</li> 
-						<li><span>UPC:</span> {{ $product->upc }}</li> 
+						<li><span>UPC:</span> {{ $product->upc or "" }}</li> 
 						<li class="instock"><span>In Stock</span></li>
 					</ul>
 				</div>
@@ -53,9 +53,7 @@
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane b-description active" id="tab-1">
-				<p>
-					The Division Bell is the fourteenth studio album by the English progressive rock band Pink Floyd, released on 28 March 1994 by EMI Records in the United Kingdom and on 4 April by Columbia Records in the United States. The album's music was written mostly by guitarist and singer David Gilmour and keyboardist Rick Wright, and features Wright's first lead vocal on a Pink Floyd album since The Dark Side of the Moon (1973). Gilmour's fiancée, Polly Samson, co-wrote many of the lyrics, which deal with themes of communication. Recording took place in locations including the band's Britannia Row Studios, and Gilmour's houseboat, Astoria. The production team included Pink Floyd stalwarts such as producer Bob Ezrin, engineer Andy Jackson and saxophonist Dick Parry.
-				</p>
+				<p>{{ $product->description or $product->name . ' - ' . $product->title }}</p>
 			</div>
 			<div class="tab-pane b-description" id="tab-2">
 				<p>
