@@ -82,7 +82,11 @@
 							<h5>{{ $product->name }}</h5>
 						</a>
 						<p class="h4">${{ $product->price }}</p>
-						<button type="button" class="btn btn-warning">Buy Now</button>
+						<form method="POST" action="{{ route('cart.store') }}">
+							{{ csrf_field() }}
+							<input type="hidden" name="product_id" value="{{ $product->id }}">
+							<button type="submit" class="btn btn-warning">Buy Now</button>
+						</form>
 					</div>
 				</div>
 			@endforeach

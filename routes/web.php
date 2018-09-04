@@ -22,7 +22,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::post('/upload', 'ExcelController@importExcel')->name('admin.upload.store');
 });
 
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('shop');
 
 Auth::routes();
 
@@ -31,3 +31,6 @@ Route::get('/store/view/{product}', 'StoreController@itemView')->name('product.v
 Route::get('/store', 'StoreController@shope');
 Route::get('/store/{ganre}', 'StoreController@ganreSearch');
 Route::post('/store', 'StoreController@search')->name('store.search');
+
+Route::resource('cart', 'CartController');
+Route::get('empty', 'CartController@empty')->name('cart.empty');
