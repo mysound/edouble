@@ -23,8 +23,11 @@
 						<span>${{ $product->price }}</span>
 					</div>
 					<div class="b-addbtn">
-						<form>
-							<button type="button" class="btn btn-warning btn-addbtn">Add To Cart</button>
+						<form method="POST" action="{{ route('cart.store') }}" >
+							{{ csrf_field() }}
+							<input type="hidden" name="product_id" value="{{ $product->id }}">
+							<input type="submit" class="btn btn-warning btn-addbtn" value="Add To Cart">
+							{{-- <button type="button" class="btn btn-warning btn-addbtn">Add To Cart</button> --}}
 						</form>
 					</div>
 				</div>
@@ -88,7 +91,11 @@
 							<h5>{{ $item->title }}</h5>
 						</a>
 						<p class="h4">${{ $item->price }}</p>
-						<button type="button" class="btn btn-warning">Buy Now</button>
+						<form method="POST" action="{{ route('cart.store') }}">
+							{{ csrf_field() }}
+							<input type="hidden" name="product_id" value="{{ $item->id }}">
+							<button type="submit" class="btn btn-warning">Buy Now</button>
+						</form>
 					</div>
 				</div>
 			@endforeach

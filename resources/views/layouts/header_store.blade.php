@@ -22,7 +22,7 @@
 					<li><a href="{{ url('/store') }}">Shop</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
-				<button class="btn btn-warning navbar-btn navbar-right"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">3</span></button>
+				<a href="{{ Cart::count() ? route('cart.index') : route('shop') }}" class="btn btn-warning navbar-btn navbar-right"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">{{ Cart::count() }}</span></a>
 				<form method="POST" action="{{ route('store.search') }}" class="navbar-form navbar-right" role="search">
 					{{ csrf_field() }}
 					<div class="input-group">

@@ -37,8 +37,12 @@
 			</div>
 		</div>
 	</div>
-	
 	<div class="container b-main__line">
+	@if(session()->has('message'))
+		<div class="alert alert-success">
+			{{ session()->get('message') }}
+		</div>
+	@endif
 		<div class="b-main-line__title thumbnail"><span class="h3"><a href="#">Vinyl</a></span></div>
 		<div class="row">
 			@foreach($lps as $lp)
@@ -52,7 +56,11 @@
 							<h5>{{ $lp->name }}</h5>
 						</a>
 						<p class="h4">${{ $lp->price }}</p>
-						<button type="button" class="btn btn-warning">Buy Now</button>
+						<form method="POST" action="{{ route('cart.store') }}">
+							{{ csrf_field() }}
+							<input type="hidden" name="product_id" value="{{ $lp->id }}">
+							<button type="submit" class="btn btn-warning">Buy Now</button>
+						</form>
 					</div>
 				</div>
 			@endforeach
@@ -70,7 +78,11 @@
 						<h5>{{ $disc->name }}</h5>
 					</a>
 					<p class="h4">${{ $disc->price }}</p>
-					<button type="button" class="btn btn-warning">Buy Now</button>
+					<form method="POST" action="{{ route('cart.store') }}">
+						{{ csrf_field() }}
+						<input type="hidden" name="product_id" value="{{ $disc->id }}">
+						<button type="submit" class="btn btn-warning">Buy Now</button>
+					</form>
 				</div>
 			</div>
 			@endforeach
