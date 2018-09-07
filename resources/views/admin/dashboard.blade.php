@@ -10,7 +10,7 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="jumbotron">
-					<p><span class="label label-primary">Products {{ $countpro }}</span></p>
+					<p><a href="{{ route('admin.product.index') }}"><span class="label label-primary">Products {{ $countpro }}</span></a></p>
 				</div>
 			</div>
 			<div class="col-sm-3">

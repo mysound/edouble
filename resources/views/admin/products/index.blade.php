@@ -8,8 +8,25 @@
 			@slot('active') Products @endslot
 		@endcomponent
 		<hr>
-		<a href="{{ route('admin.upload.create') }}" class="btn btn-success"><i class="fa fa-upload"></i> ...Excel</a>
-		<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Product</a>
+		<div class="row">
+			<div class="col-md-6">
+				<form method="GET" action="{{ route('admin.product.search') }}" class="" role="search">
+					{{ csrf_field() }}
+					<div class="input-group">
+						<input type="text" class="form-control" name="searchField" placeholder="Search" id="searchField">
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-3">
+				<a href="{{ route('admin.upload.create') }}" class="btn btn-success pull-right"><i class="fa fa-upload"></i> ...Excel</a>
+			</div>
+			<div class="col-md-3">
+				<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Product</a>
+			</div>
+		</div>
 		<table class="table table-striped">
 			<thead>
 				<th></th>
