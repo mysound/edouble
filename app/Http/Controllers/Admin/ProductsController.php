@@ -20,7 +20,17 @@ class ProductsController extends Controller
     public function index()
     {
         return view('admin.products.index', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(10)
+            'products' => Product::orderBy('created_at', 'desc')->paginate(20)
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        return view('admin.products.index', [
+            'products' => Product::where('name', 'LIKE', '%' . $request->searchField. '%')
+                                    ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
+                                    ->orwhere('upc', $request->searchField)
+                                    ->paginate(20)
         ]);
     }
 

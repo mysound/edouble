@@ -14,6 +14,7 @@
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth' , 'admin']], function(){
 	Route::get('/', 'DashboardController@dashboard')->name('admin.index');
 	Route::resource('/category', 'CategoriesController', ['as' => 'admin']);
+	Route::get('/product/search', 'ProductsController@search')->name('admin.product.search');
 	Route::resource('/product', 'ProductsController', ['as' => 'admin']);
 	Route::resource('/ganre', 'GanresController', ['as' => 'admin']);
 	Route::resource('/brand', 'BrandsController', ['as' => 'admin']);
