@@ -51,7 +51,10 @@
 								</form>
 							</td>
 							<td class="hidden-xs"><a href="{{ route('product.view', $product->model->id) }}"><img src="{{ asset('storage/images/thumbnails/' . $product->model->images->first()['title']) }}" width="40" class="gallery__img"></a></td>
-							<td><a href="{{ route('product.view', $product->model->id) }}">{{ $product->name }}</a></td>
+							<td>
+								<a href="{{ route('product.view', $product->model->id) }}">{{ $product->name }}</a><br>
+								<p><small class="text-danger"><em>Usually ships in 7-10 business days</em></small></p>
+							</td>
 							<td>{{ $product->price }}</td>
 							<td>{{ $product->subtotal }}</td>
 						</tr>
@@ -111,9 +114,28 @@
 					</div>
 				</div>
 				<div class="hidden-xs col-md-2 b-shipping-separator"></div>
-				<div class="col-md-6">Shiping info: On any order containing multiple items, the approximated shipping date is subject to the longest listed time for any item within the order, including pre-orders and awaiting repress items. <br>Please call for details:</div>
+				<div class="col-md-6">Shipping info: On any order containing multiple items, the approximated shipping date is subject to the longest listed time for any item within the order, including pre-orders and awaiting repress items. <br>Please call for details:</div>
 			</div>
-			<div class="b-cart__step">Step 3: Proceed to Secure Checkout</div>
+			<div class="b-cart__step">Step 3: Shipping addres</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label for="">Country</label>
+					<input class="form-control" type="text" name="name" placeholder="Country" value="" required="">
+				</div>
+				<div class="col-md-3">
+					<label for="">Zip Code</label>
+					<input class="form-control" type="text" name="name" placeholder="Zip Code" value="" required="">
+				</div>
+				<div class="col-md-3">
+					<label for="">State</label>
+					<input class="form-control" type="text" name="name" placeholder="State" value="" required="">
+				</div>
+				<div class="col-md-3">
+					<label for="">Addres</label>
+					<input class="form-control" type="text" name="name" placeholder="Addres" value="" required="">
+				</div>
+			</div>
+			<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>
 			<div class="row b-btnpaypal__line">
 				<span class="btnpaypal">
 					<input type="Image" name="paypalbtn" src="{{ asset('storage/images/icons/checkout-logo-large-en.png') }}">

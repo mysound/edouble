@@ -39,6 +39,11 @@ class Product extends Model
     	return $this->morphMany('App\Image', 'imageable');
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order');
+    }
+
     public function addImage($files)
     {
         $i = 0;
