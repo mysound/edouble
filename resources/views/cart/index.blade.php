@@ -117,24 +117,49 @@
 				<div class="col-md-6">Shipping info: On any order containing multiple items, the approximated shipping date is subject to the longest listed time for any item within the order, including pre-orders and awaiting repress items. <br>Please call for details:</div>
 			</div>
 			<div class="b-cart__step">Step 3: Shipping addres</div>
-			<div class="row">
-				<div class="col-md-3">
-					<label for="">Country</label>
-					<input class="form-control" type="text" name="name" placeholder="Country" value="" required="">
+			<form method="POST" action="{{ route('order') }}">
+				{{ csrf_field() }}
+				<div class="row">
+					<div class="col-md-6">
+						<label for="">First Name</label>
+						<input class="form-control" type="text" name="first_name" placeholder="First Name" value="" required="">
+					</div>
+					<div class="col-md-6">
+						<label for="">Last Name</label>
+						<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="" required="">
+					</div>
+					<div class="col-md-12">
+						<label for="">Address</label>
+						<input class="form-control" type="text" name="address" placeholder="Address" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">Country</label>
+						<input class="form-control" type="text" name="country_id" placeholder="Country" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">City</label>
+						<input class="form-control" type="text" name="city" placeholder="Address" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">State</label>
+						<input class="form-control" type="text" name="state" placeholder="State" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">Zip Code</label>
+						<input class="form-control" type="text" name="zip_code" placeholder="Zip Code" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">Phone</label>
+						<input class="form-control" type="text" name="phone" placeholder="Last Name" value="" required="">
+					</div>
+					<div class="col-md-4">
+						<label for="">Comment</label>
+						<textarea class="form-control" type="text" name="comment" placeholder="Comment"></textarea>
+					</div>
 				</div>
-				<div class="col-md-3">
-					<label for="">Zip Code</label>
-					<input class="form-control" type="text" name="name" placeholder="Zip Code" value="" required="">
-				</div>
-				<div class="col-md-3">
-					<label for="">State</label>
-					<input class="form-control" type="text" name="name" placeholder="State" value="" required="">
-				</div>
-				<div class="col-md-3">
-					<label for="">Addres</label>
-					<input class="form-control" type="text" name="name" placeholder="Addres" value="" required="">
-				</div>
-			</div>
+				<br>
+				<input class="btn btn-success" type="submit" value="Checkout">
+			</form>
 			<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>
 			<div class="row b-btnpaypal__line">
 				<span class="btnpaypal">
