@@ -24,7 +24,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('zip_code');
             $table->string('phone');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
