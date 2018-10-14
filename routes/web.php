@@ -27,7 +27,13 @@ Route::get('/', 'IndexController@index')->name('shop');
 
 Auth::routes();
 
+Route::put('/user/{user}', 'UsersController@update')->name('user.update');
+Route::get('/user/{user}/edit', 'UsersController@edit')->name('user.edit');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/user/addresses', 'AddressesController');
+
 Route::get('/store/view/{product}', 'StoreController@itemView')->name('product.view');
 Route::get('/store', 'StoreController@shope');
 Route::get('/store/{ganre}', 'StoreController@ganreSearch');
