@@ -42,4 +42,4 @@ Route::post('/store', 'StoreController@search')->name('store.search');
 Route::resource('cart', 'CartController');
 Route::get('empty', 'CartController@empty')->name('cart.empty');
 
-Route::post('/order', 'OrdersController@index')->name('order');
+Route::post('/order', 'OrdersController@store')->name('order.store');

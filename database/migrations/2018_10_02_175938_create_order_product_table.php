@@ -14,6 +14,7 @@ class CreateOrderProductTable extends Migration
     public function up()
     {
         Schema::create('order_product', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('product_id');
             $table->integer('order_id');
             $table->decimal('price', 8, 2);

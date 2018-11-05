@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -15,7 +16,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index');
+        $addresses = [];
+        if(Auth::user())
+        {
+            $addresses = Auth::user()->addresses;
+        }
+        return view('cart.index', ['addresses' => $addresses]);
     }
 
     /**

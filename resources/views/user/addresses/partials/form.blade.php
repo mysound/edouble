@@ -6,7 +6,7 @@
 	<label for="">Last Name</label>
 	<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="{{ $address->last_name or "" }}" required="">
 </div>
-<div class="col-md-12">
+<div class="col-md-4">
 	<label for="">Address</label>
 	<input class="form-control" type="text" name="address" placeholder="Address" value="{{ $address->address or "" }}" required="">
 </div>
@@ -30,13 +30,8 @@
 	<label for="">Phone</label>
 	<input class="form-control" type="text" name="phone" placeholder="Last Name" value="{{ $address->phone or "" }}" required="">
 </div>
-<div class="col-md-4">
-	<label for="">Comment</label>
-	<textarea class="form-control" type="text" name="comment" placeholder="Comment">{{ $address->comment or "" }}</textarea>
-</div>
-<br>
-
-<div class="col-md-4">
+<div class="col-md-6">
+	<br>
 	<a href="{{ route('addresses.index') }}" class="btn btn-info">Cancel</a>
 	<input class="btn btn-success orm-control" type="submit" value="Save">
 </div>
