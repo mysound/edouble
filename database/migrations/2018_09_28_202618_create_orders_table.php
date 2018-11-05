@@ -17,6 +17,9 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('address_id');
+            $table->string('comment');
+            $table->text('shipping_address');
+            $table->decimal('total', 8, 2);
             $table->timestamps();
         });
     }

@@ -5,6 +5,15 @@
 		<div class="b-item__title">
 			<h1>Your Shopping Cart</h1>
 		</div>
+		@if (count($errors))
+			<div class="alert alert-danger">
+				<ul>
+					@foreach($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
 		@if(Cart::count() > 0)
 			<div class="b-cart__step">Step 1: Edit Cart</div>
 			@if(session()->has('message'))
@@ -117,48 +126,86 @@
 				<div class="col-md-6">Shipping info: On any order containing multiple items, the approximated shipping date is subject to the longest listed time for any item within the order, including pre-orders and awaiting repress items. <br>Please call for details:</div>
 			</div>
 			<div class="b-cart__step">Step 3: Shipping addres</div>
-			<form method="POST" action="{{ route('order') }}">
+			<form method="POST" action="{{ route('order.store') }}">
 				{{ csrf_field() }}
 				<div class="row">
-					<div class="col-md-6">
-						<label for="">First Name</label>
-						<input class="form-control" type="text" name="first_name" placeholder="First Name" value="" required="">
-					</div>
-					<div class="col-md-6">
-						<label for="">Last Name</label>
-						<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="" required="">
-					</div>
-					<div class="col-md-12">
-						<label for="">Address</label>
-						<input class="form-control" type="text" name="address" placeholder="Address" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">Country</label>
-						<input class="form-control" type="text" name="country_id" placeholder="Country" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">City</label>
-						<input class="form-control" type="text" name="city" placeholder="Address" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">State</label>
-						<input class="form-control" type="text" name="state" placeholder="State" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">Zip Code</label>
-						<input class="form-control" type="text" name="zip_code" placeholder="Zip Code" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">Phone</label>
-						<input class="form-control" type="text" name="phone" placeholder="Last Name" value="" required="">
-					</div>
-					<div class="col-md-4">
-						<label for="">Comment</label>
-						<textarea class="form-control" type="text" name="comment" placeholder="Comment"></textarea>
-					</div>
+					@if($addresses)
+						<div class="col-md-12">
+							<div class="b-shipping-form">
+								<table class="table shippingtable">
+									<tbody>
+										@foreach($addresses as $address)
+											<tr>
+												<td>
+													<input type="radio" name="address" id="address" value="{{ $address->id }}">
+												</td>
+												<td>{{ $address->first_name.' '.$address->last_name }}</td>
+												<td>{{ $address->address.', '.$address->city.', '.$address->state.', '.$address->zip_code}}</td>
+												<td>{{ $address->phone }}</td>
+												<td><a href="{{ route('addresses.edit', $address->id) }}">edit</a></td>
+											</tr>
+										@endforeach
+										<tr>
+											<td colspan="5"><a href="{{ route('addresses.create') }}">Add Another</a></td>
+										</tr>
+									</tbody>
+								</table>								
+							</div>
+						</div>
+						<div class="col-md-2">
+							<button type="submit" class="btn btn-success btn-block">
+								Checkout
+							</button>
+						</div>
+					@else
+					<form method="POST" action="{{ route('order.store') }}">
+						{{ csrf_field() }}
+						
+						<div class="col-md-4">
+							<label for="">First Name</label>
+							<input class="form-control" type="text" name="first_name" placeholder="First Name" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Last Name</label>
+							<input class="form-control" type="text" name="last_name" placeholder="Last Name" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Email</label>
+							<input class="form-control" type="text" name="email" placeholder="Email" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Address</label>
+							<input class="form-control" type="text" name="address" placeholder="Address" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Country</label>
+							<input class="form-control" type="text" name="country_id" placeholder="Country" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">City</label>
+							<input class="form-control" type="text" name="city" placeholder="City" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">State</label>
+							<input class="form-control" type="text" name="state" placeholder="State" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Zip Code</label>
+							<input class="form-control" type="text" name="zip_code" placeholder="Zip Code" value="" required="">
+						</div>
+						<div class="col-md-4">
+							<label for="">Phone</label>
+							<input class="form-control" type="text" name="phone" placeholder="Phone" value="" required="">
+						</div>
+						<div class="col-md-2">
+							<label for="">*</label>
+							<button type="submit" class="btn btn-success btn-block">
+								Checkout
+							</button>
+						</div>
+					</form>
+					@endif
 				</div>
-				<br>
-				<input class="btn btn-success" type="submit" value="Checkout">
 			</form>
 			<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>
 			<div class="row b-btnpaypal__line">

@@ -13,7 +13,7 @@ class Product extends Model
 
 	public function setSlugAttribute($value)
 	{
-		$this->attributes['slug'] = Str::slug(mb_substr($this->title."-".$this->name."-".$this->upc, 0, 40) . "-" . \Carbon\Carbon::now()->format('mdyHi'), '-');
+		$this->attributes['slug'] = Str::slug(mb_substr($this->title."-".$this->upc, 0, 40));
 	}
 
     public function category()
