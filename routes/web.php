@@ -43,3 +43,4 @@ Route::resource('cart', 'CartController');
 Route::get('empty', 'CartController@empty')->name('cart.empty');
 
 Route::post('/order', 'OrdersController@store')->name('order.store');
+Route::get('/order/checkout/{order}', 'OrdersController@checkoutPage')->name('order.checkout')->middleware('auth', 'checkorder');

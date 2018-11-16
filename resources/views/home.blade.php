@@ -38,7 +38,26 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Orders - {{ Auth::user()->orders->count() }}</div>
-                <div class="panel-body"></div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Total</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        @foreach(Auth::user()->orders as $order)
+                            <tr>
+                                <td><a href="{{ route('order.checkout', $order->id) }}">{{ $order->id }}</a></td>
+                                <td>$ {{ $order->total }}</td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>Ok</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
             </div>
         </div>
     </div>
