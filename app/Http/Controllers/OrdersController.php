@@ -16,24 +16,9 @@ class OrdersController extends Controller
         if(Auth::user()) {
             $user_id = Auth::id();
             $address_id = $request->address;
+            $shipping_address = $this->shippingAddress($address_id);
 
-            $order = new Order;
-            $order->user_id = $user_id;
-            $order->address_id = $address_id;
-            $order->comment = '';
-            $order->shipping_address = '';
-            $order->total = Cart::subtotal();
-            $order->save();
-
-            foreach (Cart::content() as $product) {
-                $order->products()->attach($product->id, [
-                    'price' => $product->price,
-                    'quantity' => $product->qty
-                    ]
-                );
-            }
-
-            Cart::destroy();
+            $order = $this->newOrder($user_id, $address_id, $shipping_address);
 
         } else {
 
@@ -67,24 +52,53 @@ class OrdersController extends Controller
                 'phone' => $request->phone
             ]);
 
-            $order = new Order;
-            $order->user_id = $user->id;
-            $order->address_id = $address->id;
-            $order->comment = '';
-            $order->shipping_address = '';
-            $order->total = Cart::subtotal();
-            $order->save();
+            Auth::login($user);
+            
+            $shipping_address = $this->shippingAddress($address->id);
 
-            foreach (Cart::content() as $product) {
-                $order->products()->attach($product->id, [
-                    'price' => $product->price,
-                    'quantity' => $product->qty
-                    ]
-                );
-            }
-            Cart::destroy();
+            $order = $this->newOrder($user->id, $address->id, $shipping_address);
         }
 
-        return redirect()->route('shop')->with('message', 'Your Order Was Created');
+        return redirect()->route('order.checkout', $order)->with('message', 'Your Order Was Created');
+    }
+
+    public function newOrder($user_id, $address_id, $shipping_address)
+    {
+        $order = new Order;
+        $order->user_id = $user_id;
+        $order->address_id = $address_id;
+        $order->comment = '';
+        $order->shipping_address = $shipping_address;
+        $order->total = Cart::subtotal();
+        $order->save();
+
+        foreach (Cart::content() as $product) {
+            $order->products()->attach($product->id, [
+                'price' => $product->price,
+                'quantity' => $product->qty
+                ]
+            );
+        }
+        Cart::destroy();
+
+        return $order;
+    }
+
+    public function shippingAddress($id)
+    {
+        $address = Address::find($id);
+        $shipping_address = $address->last_name.' '.$address->first_name.', '.$address->address.', '.$address->city.', '.$address->state.', '.$address->zip_code.', '.$address->country_id.', '.$address->phone;
+
+        return $shipping_address;
+    }
+
+    public function checkoutPage(Order $order)
+    {
+        $order = Auth::user()->orders()->find($order->id);
+        
+        return view('order.checkout', [
+            'order' => $order,
+            'products' => $order->products()->get()
+        ]);
     }
 }
