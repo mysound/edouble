@@ -38,8 +38,55 @@
 				</ul>
 				<p>Shipping address: <br>{{ $order->shipping_address }}</p>
 				<p>Order total: ${{ $order->total }}</p>
-				<a href="#"><input type="Image" name="paypalbtn" src="{{ asset('storage/images/icons/checkout-logo-large-en.png') }}"></a>
+				<form method="POST" action="{{ route('create-payment') }}">
+					{{ csrf_field() }}
+					<input type="hidden" name="orderID" value="{{ $order->id }}">
+					<input type="submit" value="Pay Now" class="btn btn-success">
+				</form>
+				<br>
+				<div id="paypal-button"></div>
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('script')
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+	<script>
+		paypal.Button.render({
+			env: 'sandbox', // Or 'production'
+			style: {
+				size: 'large',
+				color: 'gold',
+				shape: 'pill',
+			},
+			// Set up the payment:
+			// 1. Add a payment callback
+			payment: function(data, actions) {
+			// 2. Make a request to your server
+				return actions.request.post('/api/create-payment/', {
+					orderID: {{ $order->id }}
+				})
+					.then(function(res) {
+					// 3. Return res.id from the response
+					return res.id;
+			    });
+			},
+			// Execute the payment:
+			// 1. Add an onAuthorize callback
+			onAuthorize: function(data, actions) {
+			// 2. Make a request to your server
+				return actions.request.post('/api/execute-payment/', {
+					paymentID: data.paymentID,
+					payerID:   data.payerID,
+					orderID: {{ $order->id }}
+				})
+					.then(function(res) {
+						window.location.replace("{{ route('payment-approved')}}");
+						//alert('Thank you for your purchase!');
+						// 3. Show the buyer a confirmation message.
+					});
+			}
+		}, '#paypal-button');
+	</script>
 @endsection

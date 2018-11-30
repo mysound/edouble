@@ -151,16 +151,8 @@
 									</tbody>
 								</table>								
 							</div>
-						</div>
-						<div class="col-md-2">
-							<button type="submit" class="btn btn-success btn-block">
-								Checkout
-							</button>
-						</div>
+						</div>						
 					@else
-					<form method="POST" action="{{ route('order.store') }}">
-						{{ csrf_field() }}
-						
 						<div class="col-md-4">
 							<label for="">First Name</label>
 							<input class="form-control" type="text" name="first_name" placeholder="First Name" value="" required="">
@@ -197,22 +189,18 @@
 							<label for="">Phone</label>
 							<input class="form-control" type="text" name="phone" placeholder="Phone" value="" required="">
 						</div>
-						<div class="col-md-2">
-							<label for="">*</label>
-							<button type="submit" class="btn btn-success btn-block">
-								Checkout
-							</button>
-						</div>
-					</form>
 					@endif
 				</div>
+				<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>
+				<button type="submit" class="btn btn-success btn-block">
+					Checkout
+				</button>
 			</form>
-			<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>
-			<div class="row b-btnpaypal__line">
+			{{-- <div class="row b-btnpaypal__line">
 				<span class="btnpaypal">
 					<input type="Image" name="paypalbtn" src="{{ asset('storage/images/icons/checkout-logo-large-en.png') }}">
 				</span>
-			</div>
+			</div> --}}
 		@else
 			<br>
 			<div class="alert alert-warning">
