@@ -22,8 +22,8 @@ class PaymentController extends Controller
     {
     	$apiContext = new \PayPal\Rest\ApiContext(
 	        new \PayPal\Auth\OAuthTokenCredential(
-	            'AVDWQG7K_8LGsKgVs_KmmDJXXzBTXEDRaFhrN1exNI5E5LCvR8eX99Vc_7oG2R-_cUg28MjehO43OxDm',     // ClientID
-	            'EEPRMs7lhLOhoxsSSg-4f7iZ06qrKrsg5hDTiXmKYXzpz5EkeL4wBbcBZ93kXq0w2QH_STDllphgecc8'      // ClientSecret
+	        	config('services.paypal.id'),
+	        	config('services.paypal.secret')
 	        )
 	    );
 
@@ -91,8 +91,8 @@ class PaymentController extends Controller
     {
     	$apiContext = new \PayPal\Rest\ApiContext(
 	        new \PayPal\Auth\OAuthTokenCredential(
-	            'AVDWQG7K_8LGsKgVs_KmmDJXXzBTXEDRaFhrN1exNI5E5LCvR8eX99Vc_7oG2R-_cUg28MjehO43OxDm',     // ClientID
-	            'EEPRMs7lhLOhoxsSSg-4f7iZ06qrKrsg5hDTiXmKYXzpz5EkeL4wBbcBZ93kXq0w2QH_STDllphgecc8'      // ClientSecret
+	        	config('services.paypal.id'),
+	        	config('services.paypal.secret')
 	        )
 	    );
 
