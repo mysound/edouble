@@ -15,6 +15,7 @@ use PayPal\Api\PaymentExecution;
 use Illuminate\Http\Request;
 
 use App\Order;
+use App\Transaction as PaymentStatus;
 
 class PaymentController extends Controller
 {
@@ -103,10 +104,11 @@ class PaymentController extends Controller
 
     	$result = $payment->execute($execution, $apiContext);
 
-    	/*$transactions = $payment->getTransactions();
+    	$transactions = $payment->getTransactions();
 		$relatedResources = $transactions[0]->getRelatedResources();
 		$sale = $relatedResources[0]->getSale();
-		$saleId = $sale->getId();*/
+		$saleId = $sale->getId();
+		
 		/*
 		Transaction
 		id
@@ -122,6 +124,18 @@ class PaymentController extends Controller
     	//$order = Order::find($request->orderID);
     	$order->comment = $result->getState().' - '.$result->getId();
 	   	$order->save();
+		
+		$payment_status = new PaymentStatus;
+		$payment_status->order_id = $order->id;
+		$payment_status->payment_id = $payment->getId();
+		$payment_status->payment_status = $payment->getState();
+		$payment_status->transaction_id = $saleId;
+		$payment_status->sale_status = $sale->getState();
+		$payment_status->amount = $sale->getAmount()->getTotal();
+		$payment_status->transaction_fee = $sale->getTransactionFee()->getValue();
+		$payment_status->save();
+
+
 
     	return $result;
     }

@@ -20,4 +20,9 @@ class Order extends Model
     {
     	return $this->belongsTo('App\Address');
     }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
 }
