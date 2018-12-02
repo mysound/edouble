@@ -53,7 +53,7 @@
                                 <td><a href="{{ route('order.checkout', $order->id) }}">{{ $order->id }}</a></td>
                                 <td>$ {{ $order->total }}</td>
                                 <td>{{ $order->created_at }}</td>
-                                <td>Ok</td>
+                                <td>{{ $order->transactions->first()['sale_status'] }}</td>
                             </tr>
                         @endforeach
                     </table>
