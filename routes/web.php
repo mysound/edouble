@@ -44,6 +44,7 @@ Route::get('empty', 'CartController@empty')->name('cart.empty');
 
 Route::post('/order', 'OrdersController@store')->name('order.store');
 Route::get('/order/checkout/{order}', 'OrdersController@checkoutPage')->name('order.checkout')->middleware('auth', 'checkorder');
+Route::get('/order/details/{order}', 'OrdersController@orderDetails')->name('order.details')->middleware('auth', 'checkorder');;
 
 Route::post('create-payment', 'PaymentController@create')->name('create-payment');
 Route::get('execute-payment/{order}', 'PaymentController@execute')->name('execute-payment');

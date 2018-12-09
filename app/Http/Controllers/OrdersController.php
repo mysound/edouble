@@ -16,9 +16,8 @@ class OrdersController extends Controller
         if(Auth::user()) {
             $user_id = Auth::id();
             $address_id = $request->address;
-            $shipping_address = $this->shippingAddress($address_id);
 
-            $order = $this->newOrder($user_id, $address_id, $shipping_address);
+            $order = $this->newOrder($user_id, $address_id);
 
         } else {
 
@@ -53,22 +52,20 @@ class OrdersController extends Controller
             ]);
 
             Auth::login($user);
-            
-            $shipping_address = $this->shippingAddress($address->id);
 
-            $order = $this->newOrder($user->id, $address->id, $shipping_address);
+            $order = $this->newOrder($user->id, $address->id);
         }
 
         return redirect()->route('order.checkout', $order)->with('message', 'Your Order Was Created');
     }
 
-    public function newOrder($user_id, $address_id, $shipping_address)
+    public function newOrder($user_id, $address_id)
     {
         $order = new Order;
         $order->user_id = $user_id;
         $order->address_id = $address_id;
         $order->comment = '';
-        $order->shipping_address = $shipping_address;
+        $order->shipping_address = '';
         $order->total = Cart::subtotal();
         $order->save();
 
@@ -84,21 +81,36 @@ class OrdersController extends Controller
         return $order;
     }
 
-    public function shippingAddress($id)
-    {
-        $address = Address::find($id);
-        $shipping_address = $address->last_name.' '.$address->first_name.', '.$address->address.', '.$address->city.', '.$address->state.', '.$address->zip_code.', '.$address->country_id.', '.$address->phone;
-
-        return $shipping_address;
-    }
-
     public function checkoutPage(Order $order)
     {
         $order = Auth::user()->orders()->find($order->id);
-        
+        $products = $order->products;
+        $quantity = 0;
+
+        foreach ($products as $product) {
+            $quantity = $quantity + $product->pivot->quantity;
+        }
         return view('order.checkout', [
             'order' => $order,
-            'products' => $order->products()->get()
+            'products' => $order->products()->get(),
+            'quantity' => $quantity
+        ]);
+    }
+
+    public function orderDetails(Order $order)
+    {
+        $order = Auth::user()->orders()->find($order->id);
+        $products = $order->products;
+        $quantity = 0;
+
+        foreach ($products as $product) {
+            $quantity = $quantity + $product->pivot->quantity;
+        }
+
+        return view('order.details', [
+            'order' => $order,
+            'products' => $order->products()->get(),
+            'quantity' => $quantity
         ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'orders' => Order::where('user_id', Auth::user()->id )
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(10)
+        ]);
     }
 }
