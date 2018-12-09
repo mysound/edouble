@@ -17,7 +17,7 @@
 			<div class="col-md-3">
 				<span class="h3 searchres_title">Search Result: 18</span>
 			</div>
-			<div class="col-md-5">
+			{{-- <div class="col-md-5">
 				<div class="b-sortby">
 					<form class="form-horizontal">
 						<div class="form-group">
@@ -32,8 +32,8 @@
 						</div>
 					</form>
 				</div>
-			</div>
-			<div class="visible-md visible-lg col-md-4 pagenav">
+			</div> --}}
+			<div class="visible-md visible-lg col-md-9 pagenav">
 				<nav aria-label="Page navigation">
 					{{ $products->links() }}
 				</nav>

@@ -6,7 +6,6 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
-
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -23,14 +22,10 @@
                     </div>
                     <div class="col-md-4">
                         <h4>Addresses - {{ Auth::user()->addresses->count() }}</h4>
-                        {{-- <a href="{{ route('user.addresses', Auth::user()->id) }}">View All Addresses</a> --}}
                         <a href="{{ route('addresses.index') }}">View All Addresses</a>
                     </div>
                     </div>
                 </div>
-                 
-
-                
             </div>
         </div>
     </div>
@@ -43,19 +38,34 @@
                         <thead>
                             <tr>
                                 <th>Order ID</th>
-                                <th>Total</th>
                                 <th>Date</th>
-                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Status Payment</th>
                             </tr>
                         </thead>
-                        @foreach(Auth::user()->orders as $order)
-                            <tr>
-                                <td><a href="{{ route('order.checkout', $order->id) }}">{{ $order->id }}</a></td>
-                                <td>$ {{ $order->total }}</td>
+                        <tbody>
+                        @foreach($orders as $order)
+                            <tr class="@if($order->transactions->first()['sale_status'] == 'completed') success @endif">
+                                <td>{{ $order->id }}</td>
                                 <td>{{ $order->created_at }}</td>
-                                <td>{{ $order->transactions->first()['sale_status'] }}</td>
+                                <td>${{ $order->total }}</td>
+                                <td>
+                                    @if($order->transactions->first()['sale_status'])
+                                       <a href="{{ route('order.details', $order->id) }}">{{ $order->transactions->first()['sale_status'] }}</a>
+                                    @else
+                                        <a href="{{ route('order.checkout', $order->id) }}">Pay Now</a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <ul class="pagination pull-right">{{ $orders->links() }}</ul>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

@@ -107,13 +107,13 @@
 									<td>Free Shipping</td>
 									<td>$0.00</td>
 								</tr>
-								<tr>
+								{{-- <tr>
 									<td>
 										<input type="radio" name="shipping" id="upsshipping" value="upsshipping">
 									</td>
 									<td>UPS Shipping</td>
 									<td>$10.00</td>
-								</tr>
+								</tr> --}}
 							</tbody>
 						</table>
 						<button type="submit" class="btn btn-primary">
@@ -137,7 +137,7 @@
 										@foreach($addresses as $address)
 											<tr>
 												<td>
-													<input type="radio" name="address" id="address" value="{{ $address->id }}">
+													<input type="radio" name="address" id="address" value="{{ $address->id }}" required="">
 												</td>
 												<td>{{ $address->first_name.' '.$address->last_name }}</td>
 												<td>{{ $address->address.', '.$address->city.', '.$address->state.', '.$address->zip_code}}</td>

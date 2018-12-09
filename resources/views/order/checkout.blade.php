@@ -2,49 +2,70 @@
 
 @section('content')
 	<div class="container b-cart__line">
-		<div class="b-item__title">
-			<h1>Your Oredr</h1>
+		<div class="row">
+			<div class="b-item__title">
+				<h1>Checkout</h1>
+			</div>
+			@if(session()->has('message'))
+			<br>
+				<div class="alert alert-success">
+					{{ session()->get('message') }}
+				</div>
+			@endif
+			@if (count($errors))
+				<div class="alert alert-danger">
+					<ul>
+						@foreach($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+			@endif
 		</div>
-		@if(session()->has('message'))
-			<div class="alert alert-success">
-				{{ session()->get('message') }}
-			</div>
-		@endif
-		@if (count($errors))
-			<div class="alert alert-danger">
-				<ul>
-					@foreach($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-		@endif
 		<br>
 		<div class="row">
-			<div class="jumbotron">
-				<p>Items:</p>
-				<ul>
-					@foreach($products as $product)
-						<li>
-							<p>
+			<div class="col-md-8">
+				<div class="jumbotron" style="padding-bottom: 55px;">
+					<span class="col-md-10">Items({{ $quantity }})</span>
+					<span class="col-md-2 text-right">${{ $order->total }}</span><br>
+					<span class="col-md-10">Shipping</span>
+					<span class="col-md-2 text-right">$0</span><br>
+					<hr>
+					<p>
+						<span class="col-md-10"><strong>Order total</strong></span>
+						<span class="col-md-2 text-right"><strong>${{ $order->total }}</strong></span><br>
+					</p>
+					<form method="POST" action="{{ route('create-payment') }}">
+						{{ csrf_field() }}
+						<input type="hidden" name="orderID" value="{{ $order->id }}">
+						<input type="submit" value="Pay Now" class="btn btn-success">
+					</form>
+					{{-- <div id="paypal-button"></div> --}}
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="jumbotron">
+					<p><strong>Ship to</strong></p>
+					<span>{{ $order->address->first_name.' '. $order->address->last_name }}</span><br>
+					<span>{{ $order->address->address }}</span><br>
+					<span>{{ $order->address->city.', '.$order->address->state.' '.$order->address->zip_code }}</span><br>
+					<span>United States</span><br>
+					<span>1234567890</span><br>
+					<a href="{{ route('addresses.edit', $order->address->id) }}">Change</a>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="jumbotron">
+					<p><strong>Review items and shipping</strong></p>
+						@foreach($products as $product)
 							<img src="{{ asset('storage/images/thumbnails/' . $product->images->first()["title"]) }}" width="50">
-								{{ $product->name }} - {{ $product->title }}
-								({{ $product->category->title  }})
-								
-							</p>
-						</li>
-					@endforeach
-					
-				</ul>
-				<p>Shipping address: <br>{{ $order->shipping_address }}</p>
-				<p>Order total: ${{ $order->total }}</p>
-				<form method="POST" action="{{ route('create-payment') }}">
-					{{ csrf_field() }}
-					<input type="hidden" name="orderID" value="{{ $order->id }}">
-					<input type="submit" value="Pay Now" class="btn btn-success">
-				</form>
-				<br>
-				<div id="paypal-button"></div>
+							<span>{{ $product->name }} - {{ $product->title }} ({{ $product->category->title  }}) ${{ $product->price }} Qty {{ $product->pivot->quantity }}</span>
+							<br>
+							<br>
+						@endforeach
+					<br>
+					{{-- <div id="paypal-button"></div> --}}
+				</div>
 			</div>
 		</div>
 	</div>

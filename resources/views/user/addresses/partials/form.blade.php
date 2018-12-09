@@ -32,6 +32,7 @@
 </div>
 <div class="col-md-6">
 	<br>
-	<a href="{{ route('addresses.index') }}" class="btn btn-info">Cancel</a>
+	<input type="hidden" name="referer" value="{{ url()->previous() }}">
+	<a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
 	<input class="btn btn-success orm-control" type="submit" value="Save">
 </div>

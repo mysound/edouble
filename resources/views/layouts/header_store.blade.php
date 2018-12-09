@@ -21,6 +21,29 @@
 					</li>
 					<li><a href="{{ url('/store') }}">Shop</a></li>
 					<li><a href="#">About</a></li>
+					@if(Auth::user())
+						<li role="presentation" class="dropdown active dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="botton" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{{ route('home') }}">Home</a></li>
+								@if(Auth::user()->admin)
+								<li><a href="{{ route('admin.index') }}">Admin Dashboard</a></li>
+								@endif
+								<li>
+		                            <a href="{{ route('logout') }}"
+		                                onclick="event.preventDefault();
+		                                         document.getElementById('logout-form').submit();">
+		                                Logout
+		                            </a>
+		                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+		                                {{ csrf_field() }}
+		                            </form>
+		                        </li>
+							</ul>
+						</li>
+					@else
+						<li><a href="{{ route('login') }}">Login</a></li>
+					@endif
 				</ul>
 				<a href="{{ Cart::count() ? route('cart.index') : route('shop') }}" class="btn btn-warning navbar-btn navbar-right"><span class="glyphicon glyphicon-shopping-cart"></span> <span class="badge">{{ Cart::count() }}</span></a>
 				<form method="POST" action="{{ route('store.search') }}" class="navbar-form navbar-right" role="search">

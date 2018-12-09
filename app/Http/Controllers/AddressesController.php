@@ -38,7 +38,8 @@ class AddressesController extends Controller
     {
         Auth::user()->addresses()->create($request->all());
 
-        return redirect()->route('addresses.index');
+       //return redirect()->route('addresses.index');
+        return redirect($request->referer);
     }
 
     /**
@@ -74,9 +75,9 @@ class AddressesController extends Controller
     {
         Auth::user()->addresses()
                     ->where('id', '=', $address->id)
-                    ->update($request->except(['_token', '_method']));
+                    ->update($request->except(['_token', '_method', 'referer']));
 
-        return redirect()->route('addresses.index');
+        return redirect($request->referer);
     }
 
     /**

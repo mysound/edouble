@@ -34,6 +34,11 @@ class PaymentController extends Controller
 		$itemList = new ItemList();
 
 		$order = Order::find($request->orderID);
+
+		//Order shipping_address text
+		$order->shipping_address = $order->address->last_name.' '.$order->address->first_name.', '.$order->address->address.', '.$order->address->city.', '.$order->address->state.', '.$order->address->zip_code.', '.$order->address->country_id.', '.$order->address->phone;
+		$order->save();
+
 		$products = $order->products;
 
 	    foreach ($products as $product) {
@@ -109,21 +114,9 @@ class PaymentController extends Controller
 		$sale = $relatedResources[0]->getSale();
 		$saleId = $sale->getId();
 		
-		/*
-		Transaction
-		id
-		order_id
-		payment_id
-		payment_status
-		transaction_id
-		sale_status
-		amount
-		transaction_fee
-		*/
-
     	//$order = Order::find($request->orderID);
-    	$order->comment = $result->getState().' - '.$result->getId();
-	   	$order->save();
+    	/*$order->comment = $result->getState().' - '.$result->getId();
+	   	$order->save();*/
 		
 		$payment_status = new PaymentStatus;
 		$payment_status->order_id = $order->id;
@@ -135,9 +128,8 @@ class PaymentController extends Controller
 		$payment_status->transaction_fee = $sale->getTransactionFee()->getValue();
 		$payment_status->save();
 
-
-
-    	return $result;
+    	//return $result;
+    	return redirect(route('payment-approved'));
     }
 
     public function approved()
