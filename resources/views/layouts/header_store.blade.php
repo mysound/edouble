@@ -27,7 +27,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="{{ route('home') }}">Home</a></li>
 								@if(Auth::user()->admin)
-								<li><a href="{{ route('admin.index') }}">Admin Dashboard</a></li>
+									<li><a href="{{ route('admin.index') }}">Admin Dashboard</a></li>
 								@endif
 								<li>
 		                            <a href="{{ route('logout') }}"

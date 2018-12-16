@@ -32,7 +32,7 @@
 				<th></th>
 				<th>Name / Artist</th>
 				<th>Title</th>
-				<th>Quantity</th>
+				<th>Qty</th>
 				<th>Price</th>
 				<th>Published</th>
 				<th class="text-right">Action</th>
