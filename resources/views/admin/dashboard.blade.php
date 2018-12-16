@@ -15,12 +15,12 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="jumbotron">
-					<p><span class="label label-primary">Sales 0</span></p>
+					<p><span class="label label-primary">Sales {{ $countsales }}</span></p>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<div class="jumbotron">
-					<p><span class="label label-primary">Orders 0</span></p>
+					<p><a href="{{ route('admin.order.index') }}"><span class="label label-primary">Orders {{ $countord }}</span></a></p>
 				</div>
 			</div>
 		</div>

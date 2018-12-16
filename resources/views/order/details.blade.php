@@ -59,9 +59,13 @@
 			<div class="col-md-4">
 				<div class="jumbotron">
 					<p><strong>Shipping details</strong></p>
-					<span><strong>Tracking number:</strong> 1Z3V982Y0396260350</span><hr>
-					<span><strong>Shipping status:</strong> Delivered</span><br>
-					<span><strong>Shipping carrier:</strong> UPS</span>
+					@if($order->shipping_no)
+						<span><strong>Tracking number:</strong> {{ $order->shipping_no }}</span><hr>
+						<span><strong>Shipping status:</strong> Delivered</span><br>
+						<span><strong>Shipping carrier:</strong> UPS</span>
+					@else
+						<span class="text-success"><strong>Awaiting shipment</strong></span>
+					@endif
 				</div>
 			</div>
 		</div>

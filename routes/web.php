@@ -21,6 +21,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::resource('/slide', 'SlidesController', ['as' => 'admin']);
 	Route::get('/upload/create', 'ExcelController@create')->name('admin.upload.create');
 	Route::post('/upload', 'ExcelController@importExcel')->name('admin.upload.store');
+	Route::get('/order', 'DashboardController@orders')->name('admin.order.index');
+	Route::get('/order/addtracking/{order}', 'DashboardController@addTracking')->name('admin.addtracking');
+	Route::post('/order', 'DashboardController@storeTracking')->name('admin.tracking.store');
+	Route::get('/order/details/{order}', 'DashboardController@orderDetails')->name('admin.order.details');
+	Route::get('/order/addtracking/{order}/edit', 'DashboardController@editTracking')->name('admin.tracking.edit');
+	Route::put('/order/addtracking/{order}', 'DashboardController@updateTracking')->name('admin.tracking.update');
 });
 
 Route::get('/', 'IndexController@index')->name('shop');
