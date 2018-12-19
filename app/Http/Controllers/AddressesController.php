@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\State;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class AddressesController extends Controller
      */
     public function create()
     {
-        return view('user.addresses.create');
+        return view('user.addresses.create', [
+            'states' => State::all()
+        ]);
     }
 
     /**
@@ -36,6 +39,10 @@ class AddressesController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'state_id'  =>  'required|not_in:0'
+        ]);
+        
         Auth::user()->addresses()->create($request->all());
 
        //return redirect()->route('addresses.index');
@@ -61,7 +68,10 @@ class AddressesController extends Controller
      */
     public function edit(Address $address)
     {
-        return view('user.addresses.edit', compact('address'));
+        return view('user.addresses.edit', [
+            'address' => $address,
+            'states' => State::all()
+        ]);
     }
 
     /**
@@ -73,6 +83,10 @@ class AddressesController extends Controller
      */
     public function update(Request $request, Address $address)
     {
+        $this->validate(request(), [
+            'state_id'  =>  'required|not_in:0'
+        ]);
+
         Auth::user()->addresses()
                     ->where('id', '=', $address->id)
                     ->update($request->except(['_token', '_method', 'referer']));

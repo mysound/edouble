@@ -27,7 +27,7 @@ class OrdersController extends Controller
                 'email' => 'required|unique:users',
                 'address'  =>  'required',
                 'city'  =>  'required',
-                'state'  =>  'required',
+                'state_id'  =>  'required|not_in:0',
                 'zip_code'  =>  'required',
                 'phone'  =>  'required'
             ]);
@@ -45,7 +45,7 @@ class OrdersController extends Controller
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'address' => $request->address,
-                'state' => $request->state,
+                'state_id' => $request->state_id,
                 'city' => $request->city,
                 'zip_code' => $request->zip_code,
                 'phone' => $request->phone

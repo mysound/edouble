@@ -61,7 +61,7 @@
 					<p><strong>Shipping details</strong></p>
 					@if($order->shipping_no)
 						<span><strong>Tracking number:</strong> {{ $order->shipping_no }}</span><hr>
-						<span><strong>Shipping status:</strong> Delivered</span><br>
+						<span><strong>Shipping status:</strong> Shipped</span><br>
 						<span><strong>Shipping carrier:</strong> UPS</span>
 					@else
 						<span class="text-success"><strong>Awaiting shipment</strong></span>

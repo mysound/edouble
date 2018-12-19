@@ -1,3 +1,13 @@
+@if (count($errors))
+	<div class="alert alert-danger">
+		<ul>
+			@foreach($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+
 <div class="col-md-6">
 	<label for="">First Name</label>
 	<input class="form-control" type="text" name="first_name" placeholder="First Name" value="{{ $address->first_name or "" }}" required="">
@@ -12,7 +22,9 @@
 </div>
 <div class="col-md-4">
 	<label for="">Country</label>
-	<input class="form-control" type="text" name="country_id" placeholder="Country" value="{{ $address->country_id or "" }}" required="">
+	<select class="form-control" name="country_id" required="">
+		<option value="1">United States</option>		
+	</select>
 </div>
 <div class="col-md-4">
 	<label for="">City</label>
@@ -20,7 +32,15 @@
 </div>
 <div class="col-md-4">
 	<label for="">State</label>
-	<input class="form-control" type="text" name="state" placeholder="State" value="{{ $address->state or "" }}" required="">
+	<select class="form-control" name="state_id" required="">
+		{{-- @foreach($states as $state)
+			<option value="{{ $state->id }}">
+				{{ $state->name .', '. $state->code }}
+			</option>
+		@endforeach --}}
+		<option value="0"></option>
+		@include('user.addresses.partials.states', ['states' => $states])
+	</select>
 </div>
 <div class="col-md-4">
 	<label for="">Zip Code</label>

@@ -48,7 +48,7 @@
 					<p><strong>Ship to</strong></p>
 					<span>{{ $order->address->first_name.' '. $order->address->last_name }}</span><br>
 					<span>{{ $order->address->address }}</span><br>
-					<span>{{ $order->address->city.', '.$order->address->state.' '.$order->address->zip_code }}</span><br>
+					<span>{{ $order->address->city.', '.$order->address->state->code.' '.$order->address->zip_code }}</span><br>
 					<span>United States</span><br>
 					<span>1234567890</span><br>
 					<a href="{{ route('addresses.edit', $order->address->id) }}">Change</a>
