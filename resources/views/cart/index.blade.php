@@ -107,13 +107,6 @@
 									<td>Free Shipping</td>
 									<td>$0.00</td>
 								</tr>
-								{{-- <tr>
-									<td>
-										<input type="radio" name="shipping" id="upsshipping" value="upsshipping">
-									</td>
-									<td>UPS Shipping</td>
-									<td>$10.00</td>
-								</tr> --}}
 							</tbody>
 						</table>
 						<button type="submit" class="btn btn-primary">
@@ -140,7 +133,7 @@
 													<input type="radio" name="address" id="address" value="{{ $address->id }}" required="">
 												</td>
 												<td>{{ $address->first_name.' '.$address->last_name }}</td>
-												<td>{{ $address->address.', '.$address->city.', '.$address->state.', '.$address->zip_code}}</td>
+												<td>{{ $address->address.', '.$address->city.', '.$address->state->code.', '.$address->zip_code}}</td>
 												<td>{{ $address->phone }}</td>
 												<td><a href="{{ route('addresses.edit', $address->id) }}">edit</a></td>
 											</tr>
@@ -171,7 +164,9 @@
 						</div>
 						<div class="col-md-4">
 							<label for="">Country</label>
-							<input class="form-control" type="text" name="country_id" placeholder="Country" value="" required="">
+							<select class="form-control" name="country_id" required="">
+								<option value="1">United States</option>		
+							</select>
 						</div>
 						<div class="col-md-4">
 							<label for="">City</label>
@@ -179,7 +174,10 @@
 						</div>
 						<div class="col-md-4">
 							<label for="">State</label>
-							<input class="form-control" type="text" name="state" placeholder="State" value="" required="">
+							<select class="form-control" name="state_id" required="">
+								<option value="0"></option>
+								@include('user.addresses.partials.states', ['states' => $states])
+							</select>
 						</div>
 						<div class="col-md-4">
 							<label for="">Zip Code</label>

@@ -36,7 +36,7 @@ class PaymentController extends Controller
 		$order = Order::find($request->orderID);
 
 		//Order shipping_address text
-		$order->shipping_address = $order->address->last_name.' '.$order->address->first_name.', '.$order->address->address.', '.$order->address->city.', '.$order->address->state.', '.$order->address->zip_code.', '.$order->address->country_id.', '.$order->address->phone;
+		$order->shipping_address = $order->address->last_name.' '.$order->address->first_name.', '.$order->address->address.', '.$order->address->city.', '.$order->address->state->code.', '.$order->address->zip_code.', '.$order->address->country->name.', '.$order->address->phone;
 		$order->save();
 
 		$products = $order->products;
@@ -61,7 +61,7 @@ class PaymentController extends Controller
 			->setCountryCode('US')
 			->setPostalCode($order->address->zip_code)
 			->setLine1($order->address->address)
-			->setState($order->address->state)
+			->setState($order->address->state->code)
 			->setRecipientName($order->address->first_name.' '.$order->address->last_name);
 		
 		$itemList->setShippingAddress($address);

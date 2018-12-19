@@ -40,6 +40,7 @@
                                 <th>Order ID</th>
                                 <th>Date</th>
                                 <th>Total</th>
+                                <th>Shiiping status</th>
                                 <th>Status Payment</th>
                             </tr>
                         </thead>
@@ -49,6 +50,7 @@
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>${{ $order->total }}</td>
+                                <td>{{ $order->shipping_no ? 'Shipped' : '-' }}</td>
                                 <td>
                                     @if($order->transactions->first()['sale_status'])
                                        <a href="{{ route('order.details', $order->id) }}">{{ $order->transactions->first()['sale_status'] }}</a>
@@ -61,7 +63,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                                     <ul class="pagination pull-right">{{ $orders->links() }}</ul>
                                 </td>
                             </tr>

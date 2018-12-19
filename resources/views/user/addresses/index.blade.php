@@ -20,9 +20,9 @@
     	                		<p>
     	                			{{ $address->first_name.' '.$address->last_name }},<br>
     	                			{{ $address->address }},
-    	                			{{ $address->city.', '.$address->state }},
-    	                			{{ $address->zip_code }}, {{ $address->country_id }},
-    	                			{{ $address->phone }}
+    	                			{{ $address->city.', '.$address->state->code }},
+    	                			{{ $address->zip_code }}, {{ $address->country->name }},<br>
+    	                			Phone: {{ $address->phone }}
     	                		</p>
     	                	</div>
                             <div class="col-md-2" style="margin-bottom: 10px;">

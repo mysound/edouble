@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\State;
 use Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ class CartController extends Controller
         {
             $addresses = Auth::user()->addresses;
         }
-        return view('cart.index', ['addresses' => $addresses]);
+        return view('cart.index', [
+            'addresses' => $addresses,
+            'states' => State::all()
+        ]);
     }
 
     /**
