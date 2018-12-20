@@ -31,10 +31,13 @@ class StoreController extends Controller
 
     public function search(Request $request) 
     {
+        $products = Product::where('name', 'LIKE', '%' . $request->searchField. '%')
+                                ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
+                                ->paginate(9);
+        $products->appends(['searchField' => $request->searchField]);
+
     	return view('store.search', [
-    		'products' => Product::where('name', 'LIKE', '%' . $request->searchField. '%')
-                                    ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
-                                    ->paginate(9)
+    		'products' => $products
     	]);
     }
 }
