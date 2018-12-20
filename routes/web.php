@@ -43,7 +43,7 @@ Route::resource('/user/addresses', 'AddressesController');
 Route::get('/store/view/{product}', 'StoreController@itemView')->name('product.view');
 Route::get('/store', 'StoreController@shope');
 Route::get('/store/{ganre}', 'StoreController@ganreSearch');
-Route::post('/store', 'StoreController@search')->name('store.search');
+Route::get('/store', 'StoreController@search')->name('store.search');
 
 Route::resource('cart', 'CartController');
 Route::get('empty', 'CartController@empty')->name('cart.empty');
