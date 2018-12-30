@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
-use Illuminate\Support\Facades\Auth;
 use App\Address;
 use App\User;
 use Cart;
+use App\Mail\NewOrder;
+use App\Mail\NewUser;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Controller
 {
@@ -32,13 +35,16 @@ class OrdersController extends Controller
                 'phone'  =>  'required'
             ]);
 
+            $random_pas = str_random(6);
             $user = new User;
             $user->name = $request->first_name;
             $user->email = $request->email;
-            $user->password = bcrypt('password');
+            $user->password = bcrypt($random_pas);
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;            
             $user->save();
+
+            Mail::to($user->email)->send(new NewUser($user, $random_pas));
 
             $address = $user->addresses()->create([
                 'country_id' => $request->country_id,
@@ -77,6 +83,8 @@ class OrdersController extends Controller
             );
         }
         Cart::destroy();
+
+        Mail::to(User::first())->send(new NewOrder($order));
 
         return $order;
     }

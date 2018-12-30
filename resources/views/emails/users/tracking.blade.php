@@ -1,0 +1,29 @@
+@component('mail::message')
+Order #{{ $order->id }}<br>
+
+Shipping details<br>
+
+Tracking number: {{ $order->shipping_no }}<br>
+Shipping status: Shipped<br>
+
+Shipping address:<br>
+{{ $address->first_name }} {{ $address->last_name }},<br>
+{{ $address->address }},<br>
+{{ $address->city }}, {{ $address->state->code }},<br>
+{{ $address->zip_code }},<br>
+{{ $address->country->name }},<br>
+{{ $address->phone }}
+
+@component('mail::table')
+| Title        | Qty    | Price    |
+|:-------------|:------:| --------:|
+@foreach($products as $product)
+| {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) | {{ $product->pivot->quantity }} | ${{ $product->price }} |
+@endforeach
+@endcomponent
+
+Total: ${{ $order->total }}
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
