@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Product;
 use App\Order;
 use App\Transaction;
+use App\Mail\TrackingNumber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -43,6 +45,8 @@ class DashboardController extends Controller
         $order = Order::find($request->order_id);
         $order->shipping_no = $request->shipping_no;
         $order->save();
+
+        Mail::to($order->user->email)->send(new TrackingNumber($order));
 
         return redirect()->route('admin.order.index');
     }

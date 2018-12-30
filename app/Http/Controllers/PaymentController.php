@@ -13,7 +13,11 @@ use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
+use App\User;
+use App\Mail\PaymentMail;
+use App\Mail\UserOrder;
 use App\Order;
 use App\Transaction as PaymentStatus;
 
@@ -128,6 +132,8 @@ class PaymentController extends Controller
 		$payment_status->transaction_fee = $sale->getTransactionFee()->getValue();
 		$payment_status->save();
 
+		Mail::to(User::first())->send(new PaymentMail($order, $payment_status->sale_status));
+		Mail::to($order->user->email)->send(new UserOrder($order));
     	//return $result;
     	return redirect(route('payment-approved'));
     }
