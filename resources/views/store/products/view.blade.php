@@ -9,7 +9,7 @@
 		<div class="row" style="margin-top: 15px;">
 			<div class="col-sm-6 col-md-5 b-item-gallery">
 				<div class="b-item-img">
-					<img src="{{ asset('storage/images/' . $product->images->first()["title"]) }}" class="img-responsive" alt="no image for the item" id="largeImage">
+					<img src="{{ asset('storage/images/' . ($product->images->first()["title"] ? $product->images->first()["title"] : 'noimage.png')) }}" class="img-responsive" alt="no image for the item" id="largeImage">
 				</div>
 				<div class="b-gallery" id="thumbs">
 					@foreach($product->images as $image)
@@ -50,15 +50,15 @@
 	<div class="container b-description__line">
 		<ul class="nav nav-tabs nav-justified">
 			<li class="active"><a href="#tab-1" data-toggle="tab">Description</a></li>
-			<li><a href="#tab-2" data-toggle="tab">Track Listing</a></li>
+			{{-- <li><a href="#tab-2" data-toggle="tab">Track Listing</a></li>
 			<li><a href="#tab-3" data-toggle="tab">Video</a></li>
-			<li><a href="#tab-4" data-toggle="tab">Reviews</a></li>
+			<li><a href="#tab-4" data-toggle="tab">Reviews</a></li> --}}
 		</ul>
 		<div class="tab-content">
 			<div class="tab-pane b-description active" id="tab-1">
 				<p>{{ $product->description or $product->name . ' - ' . $product->title }}</p>
 			</div>
-			<div class="tab-pane b-description" id="tab-2">
+			{{-- <div class="tab-pane b-description" id="tab-2">
 				<p>
 					A1	Cluster One	5:58<br>
 					A2	What Do You Want From Me	4:21<br>
@@ -74,7 +74,7 @@
 				</p>
 			</div>
 			<div class="tab-pane b-description" id="tab-3">Video</div>
-			<div class="tab-pane b-description" id="tab-4">Reviews</div>
+			<div class="tab-pane b-description" id="tab-4">Reviews</div> --}}
 		</div>
 	</div>
 	<div class="container b-also__line">
@@ -84,7 +84,7 @@
 				<div class="col-xs-6 col-sm-6 col-md-3">
 					<div class="b-main__item center-block text-center">
 						<div class="b-main-item-img center-block">
-							<a href="{{ route('product.view', ['product' => $item->id]) }}"><img src="{{ asset('storage/images/' . $item->images->first()["title"]) }}"></a>
+							<a href="{{ route('product.view', ['product' => $item->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($item->images->first()["title"] ? $item->images->first()["title"] : 'noimage.png')) }}"></a>
 						</div>
 						<a href="{{ route('product.view', ['product' => $item->id]) }}">
 							<h5>{{ $item->name }}</h5>

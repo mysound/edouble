@@ -49,7 +49,7 @@
 				<div class="col-xs-6 col-sm-4 col-md-3">
 					<div class="b-main__item center-block text-center">
 						<div class="b-main-item-img center-block">
-							<a href="{{ route('product.view', ['product' => $lp->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . $lp->images->first()["title"]) }}"></a>
+							<a href="{{ route('product.view', ['product' => $lp->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($lp->images->first()["title"] ? $lp->images->first()["title"] : 'noimage.png')) }}"></a>
 						</div>
 						<a href="{{ route('product.view', ['product' => $lp->id]) }}">
 							<h5>{{ $lp->title }}</h5>
@@ -71,7 +71,7 @@
 				<div class="col-xs-6 col-sm-6 col-md-3">
 				<div class="b-main__item center-block text-center">
 					<div class="b-main-item-img center-block">
-						<a href="{{ route('product.view', ['product' => $disc->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . $disc->images->first()["title"]) }}"></a>
+						<a href="{{ route('product.view', ['product' => $disc->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($disc->images->first()["title"] ? $disc->images->first()["title"] : 'noimage.png')) }}"></a>
 					</div>
 					<a href="{{ route('product.view', ['product' => $disc->id]) }}">
 						<h5>{{ $disc->title }}</h5>

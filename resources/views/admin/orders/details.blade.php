@@ -53,7 +53,7 @@
 							<div class="jumbotron">
 								<p><strong>Order items</strong></p>
 									@foreach($products as $product)
-										<img src="{{ asset('storage/images/thumbnails/' . $product->images->first()["title"]) }}" width="50">
+										<img src="{{ asset('storage/images/thumbnails/' . ($product->images->first()["title"] ? $product->images->first()["title"] : 'noimage.png')) }}" width="70">
 										<span>{{ $product->name }} - {{ $product->title }} ({{ $product->category->title  }}) ${{ $product->price }} Qty {{ $product->pivot->quantity }}</span>
 										<br>
 										<br>
