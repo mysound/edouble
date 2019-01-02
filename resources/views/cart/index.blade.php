@@ -59,7 +59,11 @@
 									</button>
 								</form>
 							</td>
-							<td class="hidden-xs"><a href="{{ route('product.view', $product->model->id) }}"><img src="{{ asset('storage/images/thumbnails/' . $product->model->images->first()['title']) }}" width="40" class="gallery__img"></a></td>
+							<td class="hidden-xs">
+								@if($product->model->images->first()['title'] != "")
+									<a href="{{ route('product.view', $product->model->id) }}"><img src="{{ asset('storage/images/thumbnails/' . $product->model->images->first()['title']) }}" width="40" class="gallery__img"></a>
+								@endif
+							</td>
 							<td>
 								<a href="{{ route('product.view', $product->model->id) }}">{{ $product->name }}</a><br>
 								<p><small class="text-danger"><em>Usually ships in 7-10 business days</em></small></p>

@@ -75,7 +75,7 @@
 				<div class="col-xs-6 col-sm-6 col-md-3">
 					<div class="b-main__item center-block text-center">
 						<div class="b-main-item-img center-block">
-							<a href="{{ route('product.view', ['product' => $product->id]) }}"><img src="{{ asset('storage/images/' . $product->images->first()["title"]) }}"></a>
+							<a href="{{ route('product.view', ['product' => $product->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($product->images->first()["title"] ? $product->images->first()["title"] : 'noimage.png')) }}"></a>
 						</div>
 						<a href="{{ route('product.view', ['product' => $product->id]) }}">
 							<h5>{{ $product->title }}</h5>
