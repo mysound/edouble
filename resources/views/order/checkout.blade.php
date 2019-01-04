@@ -35,12 +35,12 @@
 						<span class="col-md-10"><strong>Order total</strong></span>
 						<span class="col-md-2 text-right"><strong>${{ $order->total }}</strong></span><br>
 					</p>
-					<form method="POST" action="{{ route('create-payment') }}">
+					{{-- <form method="POST" action="{{ route('create-payment') }}">
 						{{ csrf_field() }}
 						<input type="hidden" name="orderID" value="{{ $order->id }}">
 						<input type="submit" value="Pay Now" class="btn btn-success">
-					</form>
-					{{-- <div id="paypal-button"></div> --}}
+					</form> --}}
+					<div id="paypal-button"></div>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -64,7 +64,6 @@
 							<br>
 						@endforeach
 					<br>
-					{{-- <div id="paypal-button"></div> --}}
 				</div>
 			</div>
 		</div>
@@ -76,10 +75,11 @@
 	<script>
 		paypal.Button.render({
 			env: 'sandbox', // Or 'production'
-			style: {
-				size: 'large',
+			style: {			
+				size: 'medium',
 				color: 'gold',
-				shape: 'pill',
+				shape: 'rect',
+				label: 'paypal'
 			},
 			// Set up the payment:
 			// 1. Add a payment callback
@@ -98,8 +98,8 @@
 			onAuthorize: function(data, actions) {
 			// 2. Make a request to your server
 				return actions.request.post('/api/execute-payment/', {
-					paymentID: data.paymentID,
-					payerID:   data.payerID,
+					paymentId: data.paymentID,
+					PayerID:   data.payerID,
 					orderID: {{ $order->id }}
 				})
 					.then(function(res) {
