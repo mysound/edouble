@@ -92,9 +92,8 @@ class PaymentController extends Controller
 	        echo $ex;
 	        exit(1);
 	    }
-
-		return redirect($payment->getApprovalLink());
-
+	    return $payment;
+		//return redirect($payment->getApprovalLink());
     }
 
     public function execute(Request $request, Order $order)
@@ -118,10 +117,8 @@ class PaymentController extends Controller
 		$sale = $relatedResources[0]->getSale();
 		$saleId = $sale->getId();
 		
-    	//$order = Order::find($request->orderID);
-    	/*$order->comment = $result->getState().' - '.$result->getId();
-	   	$order->save();*/
-		
+    	$order = Order::find($request->orderID);
+    			
 		$payment_status = new PaymentStatus;
 		$payment_status->order_id = $order->id;
 		$payment_status->payment_id = $payment->getId();
@@ -134,8 +131,9 @@ class PaymentController extends Controller
 
 		Mail::to(User::first())->send(new PaymentMail($order, $payment_status->sale_status));
 		Mail::to($order->user->email)->send(new UserOrder($order));
-    	//return $result;
-    	return redirect(route('payment-approved'));
+    	
+    	return $result;
+    	//return redirect(route('payment-approved'));
     }
 
     public function approved()
