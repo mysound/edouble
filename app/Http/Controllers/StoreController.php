@@ -40,4 +40,14 @@ class StoreController extends Controller
     		'products' => $products
     	]);
     }
+
+    public function about()
+    {
+        return view('store.about');
+    }
+
+    public function policy()
+    {
+        return view('store.policy');
+    }
 }

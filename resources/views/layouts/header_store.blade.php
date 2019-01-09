@@ -20,7 +20,7 @@
 						</ul>
 					</li>
 					<li><a href="{{ url('/store') }}">Shop</a></li>
-					<li><a href="#">About</a></li>
+					<li><a href="{{ route('store.about') }}">About</a></li>
 					@if(Auth::user())
 						<li role="presentation" class="dropdown active dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="botton" aria-haspopup="true" aria-expanded="false">My Account<span class="caret"></span></a>
