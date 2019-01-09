@@ -18,7 +18,7 @@ class Slide extends Model
     public function addImage($file) {
         $imagetitle = str_slug($this->title . ' ' . time(), '-') . '.' . $file->getClientOriginalExtension();
         $picture = ImageInt::make($file)
-            ->resize(455, 240, function ($constraint) { $constraint->aspectRatio(); } )
+            ->resize(455, 236, function ($constraint) { $constraint->aspectRatio(); } )
             ->encode('jpg',100);
         Storage::disk('images')->put($imagetitle, $picture);
         $picture->destroy();

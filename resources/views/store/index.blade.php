@@ -12,10 +12,10 @@
 	<div class="container b-slider__line">
 		<div class="row">
 			<div class="col-md-6 b-slider-line__jumbotron">
-				<div class="jumbotron b-slider-line-jumbotron">
-					<h3>DoubleSides</h3>
-					<p>EXCLUSIVE VINYL & CDs</p>
-					<p><img src="{{ asset('storage/images/icons/shipping.ico') }}" class="jumbotron_shipping_img"> Free Shipping</p>
+				<div class="jumbotron b-slider-line-jumbotron text-center">
+					<h1><em>DoubleSides</em></h1>
+					<p class=""><em>EXCLUSIVE VINYL & CDs</em></p>
+					{{-- <span class="h4"><img src="{{ asset('storage/images/icons/shipping.ico') }}" class="jumbotron_shipping_img text-left"><em> Free Shipping</em></span> --}}
 				</div>
 			</div>
 			<div class="col-md-6 b-slider-line-slider">

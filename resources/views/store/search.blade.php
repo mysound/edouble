@@ -34,9 +34,43 @@
 				</div>
 			</div> --}}
 			<div class="visible-md visible-lg col-md-9 pagenav">
-				<nav aria-label="Page navigation">
-					{{ $products->links() }}
-				</nav>
+				@if ($products->hasPages())
+				    <ul class="pagination pagination">
+				        {{-- Previous Page Link --}}
+				        @if ($products->onFirstPage())
+				            <li class="disabled"><span>«</span></li>
+				        @else
+				            <li><a href="{{ $products->previousPageUrl() }}" rel="prev">«</a></li>
+				        @endif
+				        @if($products->currentPage() > 3)
+				            <li class="hidden-xs"><a href="{{ $products->url(1) }}">1</a></li>
+				        @endif
+				        @if($products->currentPage() > 4)
+				            <li><span>...</span></li>
+				        @endif
+				        @foreach(range(1, $products->lastPage()) as $i)
+				            @if($i >= $products->currentPage() - 2 && $i <= $products->currentPage() + 2)
+				                @if ($i == $products->currentPage())
+				                    <li class="active"><span>{{ $i }}</span></li>
+				                @else
+				                    <li><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
+				                @endif
+				            @endif
+				        @endforeach
+				        @if($products->currentPage() < $products->lastPage() - 3)
+				            <li><span>...</span></li>
+				        @endif
+				        @if($products->currentPage() < $products->lastPage() - 2)
+				            <li class="hidden-xs"><a href="{{ $products->url($products->lastPage()) }}">{{ $products->lastPage() }}</a></li>
+				        @endif
+				        {{-- Next Page Link --}}
+				        @if ($products->hasMorePages())
+				            <li><a href="{{ $products->nextPageUrl() }}" rel="next">»</a></li>
+				        @else
+				            <li class="disabled"><span>»</span></li>
+				        @endif
+				    </ul>
+				@endif
 			</div>
 		</div>
 		<div class="row">
@@ -49,7 +83,7 @@
 						<ul>
 							<li><a href="#">Records Vinyl</a></li>
 							<li><a href="#">CD, DVD & Blu-Ray</a></li>
-							<li><a href="#">All categories</a></li>
+							<li><a href="{{ route('store.search') }}">All categories</a></li>
 						</ul>
 					</div>
 					<div class="splitterline-top b-search__price">
@@ -95,9 +129,43 @@
 		</div>
 		<div class="row splitterline">
 			<div class="col-md-12 pagenav">
-				<nav aria-label="Page navigation">
-					{{ $products->links() }}
-				</nav>
+				@if ($products->hasPages())
+				    <ul class="pagination pagination">
+				        {{-- Previous Page Link --}}
+				        @if ($products->onFirstPage())
+				            <li class="disabled"><span>«</span></li>
+				        @else
+				            <li><a href="{{ $products->previousPageUrl() }}" rel="prev">«</a></li>
+				        @endif
+				        @if($products->currentPage() > 3)
+				            <li class="hidden-xs"><a href="{{ $products->url(1) }}">1</a></li>
+				        @endif
+				        @if($products->currentPage() > 4)
+				            <li><span>...</span></li>
+				        @endif
+				        @foreach(range(1, $products->lastPage()) as $i)
+				            @if($i >= $products->currentPage() - 2 && $i <= $products->currentPage() + 2)
+				                @if ($i == $products->currentPage())
+				                    <li class="active"><span>{{ $i }}</span></li>
+				                @else
+				                    <li><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
+				                @endif
+				            @endif
+				        @endforeach
+				        @if($products->currentPage() < $products->lastPage() - 3)
+				            <li><span>...</span></li>
+				        @endif
+				        @if($products->currentPage() < $products->lastPage() - 2)
+				            <li class="hidden-xs"><a href="{{ $products->url($products->lastPage()) }}">{{ $products->lastPage() }}</a></li>
+				        @endif
+				        {{-- Next Page Link --}}
+				        @if ($products->hasMorePages())
+				            <li><a href="{{ $products->nextPageUrl() }}" rel="next">»</a></li>
+				        @else
+				            <li class="disabled"><span>»</span></li>
+				        @endif
+				    </ul>
+				@endif
 			</div>
 		</div>
 	</div>
