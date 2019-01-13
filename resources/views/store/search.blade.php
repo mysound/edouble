@@ -5,7 +5,7 @@
 	<div class="container b-shopmain__line">
 		<div class="row">
 			<div class="col-md-12 b-breadcrumbs">
-				<span><a href="#">Doublesides</a></span>
+				<span><a href="{{ route('shop') }}">Doublesides</a></span>
 				<span styles="font-size: 13px;">→</span>
 				<span>Search</span>
 			</div>
@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row splitterline-bottom">
 			<div class="col-md-3">
-				<span class="h3 searchres_title">Search Result: 18</span>
+				<span class="h3 searchres_title">Search Result: {{ $products->total() }}</span>
 			</div>
 			{{-- <div class="col-md-5">
 				<div class="b-sortby">
@@ -81,9 +81,9 @@
 					</div>
 					<div class="b-search__checkbox">
 						<ul>
-							<li><a href="#">Records Vinyl</a></li>
-							<li><a href="#">CD, DVD & Blu-Ray</a></li>
-							<li><a href="{{ route('store.search') }}">All categories</a></li>
+							<li><a href="{{ route('store.search', ['category_id' => 2, 'ganre_id' => $ganre_id, 'searchField' => $searchField, 'min_price' => $min_price, 'max_price' => $max_price]) }}">Records Vinyl</a></li>
+							<li><a href="{{ route('store.search', ['category_id' => 3, 'ganre_id' => $ganre_id, 'searchField' => $searchField, 'min_price' => $min_price, 'max_price' => $max_price]) }}">CD, DVD & Blu-Ray</a></li>
+							<li><a href="{{ route('store.search', ['searchField' => $searchField, 'ganre_id' => $ganre_id, 'min_price' => $min_price, 'max_price' => $max_price]) }}">All categories</a></li>
 						</ul>
 					</div>
 					<div class="splitterline-top b-search__price">
@@ -91,13 +91,21 @@
 							<h4>Price</h4>
 						</div>
 						<div>
-							<form>
+							<form method="GET" action="{{ route('store.search') }}">
+								{{ csrf_field() }}
 								<div class="b-priceField">
-									$&nbsp;<input type="" name="" class="priceField">
-									to&nbsp;$&nbsp;<input type="" name="" class="priceField">
+									$&nbsp;<input type="text" name="min_price" class="priceField" value="{{ $min_price or "" }}">
+									to&nbsp;$&nbsp;<input type="text" name="max_price" class="priceField" value="{{ $max_price or "" }}">
 								</div>
+								@if($ganre_id)
+									<input type="hidden" name="ganre_id" value="{{ $ganre_id }}">
+								@endif
+								@if($category_id)
+									<input type="hidden" name="category_id" value="{{ $category_id }}">
+								@endif
+								<input type="hidden" name="searchField" value="{{ $searchField }}">
 								<div class="b-search__button">
-									<button type="button" class="btn btn-success">Search</button>
+									<button type="submit" class="btn btn-success">Search</button>
 								</div>
 							</form>
 						</div>
@@ -111,10 +119,12 @@
 						<div class="b-main-item-img center-block">
 							<a href="{{ route('product.view', ['product' => $product->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($product->images->first()["title"] ? $product->images->first()["title"] : 'noimage.png')) }}"></a>
 						</div>
-						<a href="{{ route('product.view', ['product' => $product->id]) }}">
-							<h5>{{ $product->title }}</h5>
-							<h5>{{ $product->name }}</h5>
-						</a>
+						<div class="b-main-item-title">
+							<a href="{{ route('product.view', ['product' => $product->id]) }}">
+								<h5>{{ str_limit($product->title, 51) }}</h5>
+								<h5>{{ str_limit($product->name, 51) }}</h5>
+							</a>
+						</div>
 						<p class="h4">${{ $product->price }}</p>
 						<form method="POST" action="{{ route('cart.store') }}">
 							{{ csrf_field() }}

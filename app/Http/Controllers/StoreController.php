@@ -17,7 +17,7 @@ class StoreController extends Controller
     public function shope()
     {
     	return view('store.search', [
-    		'products' => Product::paginate(9)
+    		'products' => Product::paginate(12)
     	]);
     }
 
@@ -25,19 +25,68 @@ class StoreController extends Controller
     {
         $ganre_id = $id;
         return view('store.search', [
-            'products' => Product::where('ganre_id', '=', $ganre_id)->paginate(9)
+            'products' => Product::where('ganre_id', '=', $ganre_id)->paginate(12),
+            'ganre_id' => $ganre_id,
+            'searchField' => ''
         ]);
     }
 
     public function search(Request $request) 
     {
-        $products = Product::where('name', 'LIKE', '%' . $request->searchField. '%')
-                                ->orwhere('title', 'LIKE', '%' . $request->searchField. '%')
-                                ->paginate(9);
-        $products->appends(['searchField' => $request->searchField]);
+        $min_price = $request->min_price ? $request->min_price : 0;
+        $max_price = $request->max_price ? $request->max_price : 100000;
+        
+        if ($request->has('category_id')) {
+            if ($request->has('ganre_id')) {
+                $products = Product::where([
+                                        ['category_id', '=', $request->category_id],
+                                        ['ganre_id', '=', $request->ganre_id]
+                                    ])
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->paginate(12);
+            } else {
+                $products = Product::where([
+                                            ['name', 'LIKE', '%' . $request->searchField. '%'],
+                                            ['category_id', '=', $request->category_id]
+                                        ])
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->orwhere([
+                                            ['title', 'LIKE', '%' . $request->searchField. '%'],
+                                            ['category_id', '=', $request->category_id]
+                                        ])
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->paginate(12);
+            }
+        }
+        else {
+            if ($request->has('ganre_id')) {
+                $products = Product::where('ganre_id', '=', $request->ganre_id)
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->paginate(12);
+            } else {
+                $products = Product::where('name', 'LIKE', '%' .$request->searchField. '%')
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->orwhere('title', 'LIKE', '%' .$request->searchField. '%')
+                                        ->whereBetween('price', [$min_price, $max_price])
+                                        ->paginate(12);
+            }
+        }
+
+        $products->appends([
+                            'searchField' => $request->searchField,
+                            'category_id' => $request->category_id,
+                            'ganre_id' => $request->ganre_id,
+                            'min_price' => $request->min_price,
+                            'max_price' => $request->max_price
+                        ]);
 
     	return view('store.search', [
-    		'products' => $products
+    		'products' => $products,
+            'ganre_id' => $request->ganre_id,
+            'category_id' => $request->category_id,
+            'searchField' => $request->searchField,
+            'min_price' => $request->min_price,
+            'max_price' => $request->max_price
     	]);
     }
 
@@ -49,5 +98,15 @@ class StoreController extends Controller
     public function policy()
     {
         return view('store.policy');
+    }
+
+    public function shipping()
+    {
+        return view('store.shipping');
+    }
+
+    public function faq()
+    {
+        return view('store.faq');
     }
 }
