@@ -86,10 +86,12 @@
 						<div class="b-main-item-img center-block">
 							<a href="{{ route('product.view', ['product' => $item->id]) }}"><img src="{{ asset('storage/images/thumbnails/' . ($item->images->first()["title"] ? $item->images->first()["title"] : 'noimage.png')) }}"></a>
 						</div>
-						<a href="{{ route('product.view', ['product' => $item->id]) }}">
-							<h5>{{ $item->name }}</h5>
-							<h5>{{ $item->title }}</h5>
-						</a>
+						<div class="b-main-item-title">
+							<a href="{{ route('product.view', ['product' => $item->id]) }}">
+								<h5>{{ str_limit($item->title, 51) }}</h5>
+								<h5>{{ str_limit($item->name, 51) }}</h5>
+							</a>
+						</div>
 						<p class="h4">${{ $item->price }}</p>
 						<form method="POST" action="{{ route('cart.store') }}">
 							{{ csrf_field() }}

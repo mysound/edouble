@@ -28,11 +28,11 @@
 			<div class="row">
 				<div class="col-md-8">
 					<ul class="bs-docs-footer-links">
-						<li><a href={{ route('store.about') }}>About Us</a></li>
-						<li><a href="#">FAQ</a></li>
+						<li><a href="{{ route('store.about') }}">About Us</a></li>
+						<li><a href="{{ route('store.faq') }}">FAQ</a></li>
 						<li><a href="#">Contact Us</a></li>
-						<li><a href="#">Shipping</a></li>
-						<li><a href={{ route('store.policy') }}>Privacy Policy</a></li>
+						<li><a href="{{ route('store.shipping') }}">Shipping</a></li>
+						<li><a href="{{ route('store.policy') }}">Privacy Policy</a></li>
 					</ul>
 					<p>DoubleSides inc. - All Rights Reserved.</p>
 				</div>

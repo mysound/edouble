@@ -47,6 +47,8 @@ Route::get('/store', 'StoreController@search')->name('store.search');
 
 Route::get('/about', 'StoreController@about')->name('store.about');
 Route::get('/policy', 'StoreController@policy')->name('store.policy');
+Route::get('/shipping', 'StoreController@shipping')->name('store.shipping');
+Route::get('/faq', 'StoreController@faq')->name('store.faq');
 
 Route::resource('cart', 'CartController');
 Route::get('empty', 'CartController@empty')->name('cart.empty');

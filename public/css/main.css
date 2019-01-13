@@ -22,6 +22,15 @@
 	margin-top: 73px;
 }
 
+.b-slider-line-jumbotron {
+	font-family: Century Gothic;
+	color: #444;
+}
+
+.b-slider-line-jumbotron-h1 {
+	text-transform: uppercase;
+}
+
 .jumbotron_shipping_img {
 	width: 27px;
 }
@@ -52,6 +61,9 @@
 .b-main-item-img {
 	max-width: 140px;
 	max-height: 140px;
+}
+.b-main-item-title {
+	min-height: 71px;
 }
 
 /*Footer*/

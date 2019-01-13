@@ -21,13 +21,15 @@
 			</ul>
 			<h3>How long will you use my personal data for</h3>
 			<p>We will only retain your personal data for as long as necessary to fulfil the purposes we collected it for, including for the purposes of satisfying any legal, accounting, or reporting requirements. To determine the appropriate retention period for personal data, we consider the amount, nature, and sensitivity of the personal data, the potential risk of harm from unauthorised use or disclosure of your personal data, the purposes for which we process your personal data and whether we can achieve those purposes through other means, and the applicable legal requirements.</p>
-			<p>Information we may collect from you</p>
+			<h3>Information we may collect from you</h3>
 			<h3>We may collect and process the following data about you:</h3>
-			<p>Information you give us</p>
-			<p>You may give us information about you by filling in forms on our website or at any of our sites or through the purchase of products / services or by corresponding with us by telephone, email or otherwise.</p>
-			<p>This includes information you provide when you subscribe to our newsletters or mailouts, or place an order on one of our sites.</p>
-			<p>The information you may give us may include your name, email address, postal address and telephone number and financial and credit card information.</p>
-			<p>Information we collect about you on Doubleside website</p>
+			<h3>Information you give us</h3>
+			<ul>
+				<li>You may give us information about you by filling in forms on our website or at any of our sites or through the purchase of products / services or by corresponding with us by telephone, email or otherwise.</li>
+				<li>This includes information you provide when you subscribe to our newsletters or mailouts, or place an order on one of our sites.</li>
+				<li>The information you may give us may include your name, email address, postal address and telephone number and financial and credit card information.</li>
+				<li>Information we collect about you on Doubleside website</li>
+			</ul>
 			<h3>With regard to each of your visits to our site we may automatically collect the following information:</h3>
 			<ul>
 				<li>technical information, including the Internet protocol (IP) address used to connect your computer to the Internet, your login information, browser type and version, time zone setting, browser plug-in types and versions, operating system and platform;</li>
@@ -111,7 +113,7 @@
 			<p>You should check the third-party websites for more information about these.</p>
 			<h3>How to manage cookies</h3>
 			<p>You have the ability to accept or decline cookies by modifying the settings in your browser. However, you may not be able to use all the interactive features of our site if cookies are disabled. You may wish to visit www.aboutcookies.org which contains comprehensive information on how to modify the cookie settings on a wide variety of browsers. You will also find details on how to delete cookies from your computer as well as more general information about cookies. For information on how to do this on the browser of your mobile phone or tablet you will need to refer to your device manual. If you’d like to opt out of advertising cookies, please go to the Network Advertising Initiative website http://www.networkadvertising.org/ (opens in a new window – please note that we are not responsible for the content of external websites).</p>
-			<h3>ACKNOWLEDGEMENT</h3>
+			<h3>Acknowledgement</h3>
 			<p>By completing forms provided by deepdiscount.com and providing personal information through the Website, through any means, and by using the Website and services contained therein, You hereby represent and warrant that:</p>
 			<ul>
 				<li>You have read, understand and agree to doublesides.com's Privacy Policy;</li>
