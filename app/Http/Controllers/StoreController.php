@@ -27,7 +27,10 @@ class StoreController extends Controller
         return view('store.search', [
             'products' => Product::where('ganre_id', '=', $ganre_id)->paginate(12),
             'ganre_id' => $ganre_id,
-            'searchField' => ''
+            'category_id' => '',
+            'searchField' => '',
+            'min_price' => '',
+            'max_price' => ''
         ]);
     }
 
