@@ -39,9 +39,9 @@
 						<li><span>Label: </span>{{ $product->brand->title or ""}}</li>
 						<li><span>Genre: </span>{{ $product->ganre->title or "" }}</li>
 						<li><span>Description: </span>{{ $product->short_description or "" }}</li>
-						<li><span>Release Date</span>: 2016</li> 
-						<li><span>UPC:</span> {{ $product->upc or "" }}</li> 
-						<li class="instock"><span>In Stock</span></li>
+						<li><span>Release Date: </span>{{ $product->release_date or "" }}</li> 
+						<li><span>UPC: </span>{{ $product->upc or "" }}</li> 
+						<li class="{{ $product->quantity ? 'instock' : 'outofstok' }}"><span>{{ $product->quantity ? 'In Stock' : 'Out of Stock' }}</span></li>
 					</ul>
 				</div>
 			</div>
