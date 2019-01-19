@@ -95,12 +95,20 @@
 	text-align: right;
 }
 
+.icon-in {
+	display: inline-block;
+    width: 29px;
+    height: 29px;
+    margin-right: 14px;
+    background: url(/storage/images/icons/social_media1.png) no-repeat 0px 0px;
+}
+
 .icon-fb {
 	display: inline-block;
     width: 29px;
     height: 29px;
     margin-right: 14px;
-    background: url(/storage/images/icons/social_media.png) no-repeat -43px 0px;
+    background: url(/storage/images/icons/social_media1.png) no-repeat -43px 0px;
 }
 
 .icon-paypal {

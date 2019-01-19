@@ -38,8 +38,9 @@
 				</div>
 				<div class="col-md-4">
 					<div class="socials_media">
-						<a href="#" class="icon-fb"></a>
-						<a href="#" class="icon-paypal"></a>
+						<a href="https://www.instagram.com/doublesides_inc/" class="icon-in"></a>
+						<a href="https://www.facebook.com/" class="icon-fb"></a>
+						<a href="https://www.paypal.com" class="icon-paypal"></a>
 					</div>
 				</div>
 			</div>
