@@ -13,7 +13,7 @@ class Product extends Model
 
 	public function setSlugAttribute($value)
 	{
-		$this->attributes['slug'] = Str::slug(mb_substr($this->title."-".$this->upc, 0, 40));
+		$this->attributes['slug'] = Str::slug(mb_substr($this->upc."-".$this->title."-".$this->name, 0, 60));
 	}
 
     public function category()
