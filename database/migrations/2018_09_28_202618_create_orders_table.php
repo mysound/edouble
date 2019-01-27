@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('comment')->nullable();
             $table->text('shipping_address')->nullable();
             $table->decimal('total', 8, 2);
+            $table->decimal('subtotal', 8, 2);
             $table->decimal('total_tax', 8, 2)->nullable();
             $table->decimal('total_shipping', 8, 2)->nullable();
             $table->decimal('total_shipping_tax', 8, 2)->nullable();

@@ -67,12 +67,22 @@ class OrdersController extends Controller
 
     public function newOrder($user_id, $address_id)
     {
+        $tax = 0;
+        $address = Address::find($address_id);
+        if ($address->state->code == 'NY') {
+            $tax = number_format(Cart::subtotal()*8.875/100, 2, '.', '');
+        }
+
+        $total = Cart::subtotal() + $tax;
+
         $order = new Order;
         $order->user_id = $user_id;
         $order->address_id = $address_id;
         $order->comment = '';
         $order->shipping_address = '';
-        $order->total = Cart::subtotal();
+        $order->total = $total;
+        $order->subtotal = Cart::subtotal();
+        $order->total_tax = $tax;
         $order->save();
 
         foreach (Cart::content() as $product) {

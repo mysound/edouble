@@ -22,6 +22,7 @@ Shipping address:<br>
 @endforeach
 @endcomponent
 
+Sales tax: ${{ $order->total_tax }}<br>
 Total: ${{ $order->total }}
 
 Thanks,<br>

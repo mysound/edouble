@@ -37,6 +37,7 @@ class NewOrder extends Mailable
                     ->with([
                         'order_id' => $this->order->id,
                         'total' => $this->order->total,
+                        'total_tax' => $this->order->total_tax,
                         'address' => $this->address,
                         'products' => $this->products
                     ]);

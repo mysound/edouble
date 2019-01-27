@@ -19,7 +19,7 @@ Shipping address:<br>
 | {{ $product->name }} - {{ $product->title }} ({{ $product->category->title }}) | {{ $product->pivot->quantity }} | ${{ $product->price }} |
 @endforeach
 @endcomponent
-
+Sales tax: ${{ $order->total_tax }}<br>
 Total: ${{ $order->total }}
 
 Thanks,<br>
