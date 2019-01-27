@@ -27,9 +27,11 @@
 			<div class="col-md-8">
 				<div class="jumbotron" style="padding-bottom: 55px;">
 					<span class="col-md-10">Items({{ $quantity }})</span>
-					<span class="col-md-2 text-right">${{ $order->total }}</span><br>
+					<span class="col-md-2 text-right">${{ $order->subtotal }}</span><br>
 					<span class="col-md-10">Shipping</span>
-					<span class="col-md-2 text-right">$0</span><br>
+					<span class="col-md-2 text-right">$0.00</span><br>
+					<span class="col-md-10">Sales tax</span>
+					<span class="col-md-2 text-right">${{ $order->total_tax}}</span><br>
 					<hr>
 					<p>
 						<span class="col-md-10"><strong>Order total</strong></span>

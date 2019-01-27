@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PayPal\Api\Payer;
 use PayPal\Api\Amount;
+use PayPal\Api\Details;
 use PayPal\Api\ItemList;
 use PayPal\Api\Item;
 use PayPal\Api\Transaction;
@@ -56,9 +57,14 @@ class PaymentController extends Controller
 	    	$itemList->addItem($item);
 	    }
 
+		$details = new Details();
+		$details->setTax($order->total_tax)
+			->setSubtotal($order->subtotal);
+
 	    $amount = new Amount();
 		$amount->setCurrency("USD")
-		    ->setTotal($order->total);
+		    ->setTotal($order->total)
+		    ->setDetails($details);
 
 		$address = new ShippingAddress();
 		$address->setCity($order->address->city)

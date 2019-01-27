@@ -22,6 +22,7 @@ Ship to:<br>
 @endforeach
 @endcomponent
 
+Sales tax: ${{ $total_tax }}<br>
 Total: ${{ $total }}
 
 Thanks,<br>

@@ -33,9 +33,11 @@
 						<div class="col-md-8">
 							<div class="jumbotron" style="padding-bottom: 55px;">
 								<span class="col-md-10">Items({{ $quantity }})</span>
-								<span class="col-md-2 text-right">${{ $order->total }}</span><br>
+								<span class="col-md-2 text-right">${{ $order->subtotal }}</span><br>
 								<span class="col-md-10">Shipping</span>
 								<span class="col-md-2 text-right">$0</span><br>
+								<span class="col-md-10">Sales tax</span>
+								<span class="col-md-2 text-right">${{ $order->total_tax}}</span><br>
 								<hr>
 								<p>
 									<span class="col-md-10"><strong>Order total</strong></span>
@@ -64,10 +66,15 @@
 						<div class="col-md-4">
 							<div class="jumbotron">
 								<p><strong>Shipping details</strong></p>
-								<a href="{{ route('admin.tracking.edit', $order->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
-								<span><strong>Tracking number: </strong>{{ $order->shipping_no }}</span><hr>
-								<span><strong>Shipping status: </strong> Delivered</span><br>
-								<span><strong>Shipping carrier: </strong> UPS</span>
+								@if($order->shipping_no)
+									<a href="{{ route('admin.tracking.edit', $order->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
+									<span><strong>Tracking number: </strong>{{ $order->shipping_no }}</span><hr>	
+									<span><strong>Shipping status:</strong> Shipped</span><br>
+									<span><strong>Shipping carrier:</strong> UPS</span>
+								@else
+									<span class="text-success"><strong>Awaiting shipment</strong></span><br>
+									<a href="{{ route('admin.addtracking', $order->id) }}">Add tracking</a>
+								@endif
 							</div>
 						</div>
 					</div>
