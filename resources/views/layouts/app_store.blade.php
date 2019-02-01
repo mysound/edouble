@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @yield('style')
+    {!! NoCaptcha::renderJs() !!}
 </head>
 <body class="b-page">
 
@@ -30,7 +31,7 @@
 					<ul class="bs-docs-footer-links">
 						<li><a href="{{ route('store.about') }}">About Us</a></li>
 						<li><a href="{{ route('store.faq') }}">FAQ</a></li>
-						<li><a href="#">Contact Us</a></li>
+						<li><a href="{{ route('store.contact') }}">Contact Us</a></li>
 						<li><a href="{{ route('store.shipping') }}">Shipping</a></li>
 						<li><a href="{{ route('store.policy') }}">Privacy Policy</a></li>
 					</ul>
@@ -39,7 +40,7 @@
 				<div class="col-md-4">
 					<div class="socials_media">
 						<a href="https://www.instagram.com/doublesides_inc/" class="icon-in"></a>
-						<a href="https://www.facebook.com/" class="icon-fb"></a>
+						<a href="https://www.facebook.com/dbsides/" class="icon-fb"></a>
 						<a href="https://www.paypal.com" class="icon-paypal"></a>
 					</div>
 				</div>

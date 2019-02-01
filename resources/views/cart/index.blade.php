@@ -191,6 +191,10 @@
 							<label for="">Phone</label>
 							<input class="form-control" type="text" name="phone" placeholder="Phone" value="" required="">
 						</div>
+						<div class="col-sm-offset-4 col-sm-8">
+							<label for=""></label>
+							{!! NoCaptcha::display() !!}
+						</div>
 					@endif
 				</div>
 				<div class="b-cart__step">Step 4: Proceed to Secure Checkout</div>

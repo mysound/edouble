@@ -32,7 +32,8 @@ class OrdersController extends Controller
                 'city'  =>  'required',
                 'state_id'  =>  'required|not_in:0',
                 'zip_code'  =>  'required',
-                'phone'  =>  'required'
+                'phone'  =>  'required',
+                'g-recaptcha-response' => 'required|captcha'
             ]);
 
             $random_pas = str_random(6);
