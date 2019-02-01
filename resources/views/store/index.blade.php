@@ -13,8 +13,8 @@
 		<div class="row">
 			<div class="visible-lg visible-md col-md-6 b-slider-line__jumbotron">
 				<div class="jumbotron b-slider-line-jumbotron text-center">
-					<h1 class="b-slider-line-jumbotron-h1" style="font-size: 4em">DoubleSides</h1>
-					<p class="b-slider-line-jumbotron-p" style="font-size: 1.8em">Exclusive Vinyl & CDs</p>
+					<h1 class="b-slider-line-jumbotron-h1" style="font-size: 3.9em">DoubleSides</h1>
+					<p class="b-slider-line-jumbotron-p" style="font-size: 1.85em">Exclusive Vinyl & CDs</p>
 				</div>
 			</div>
 			<div class="visible-xs col-md-6 b-slider-line__jumbotron">

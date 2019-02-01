@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\User;
+use App\Mail\ContactUs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class StoreController extends Controller
 {
@@ -111,5 +114,28 @@ class StoreController extends Controller
     public function faq()
     {
         return view('store.faq');
+    }
+    
+    public function contact()
+    {
+        return view('store.contact');
+    }
+
+    public function contactSend(Request $request)
+    {
+        $this->validate(request(), [
+            'from' => 'required|email',
+            'name' => 'required|min:2',
+            'text' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
+        $from = $request->from;
+        $name = $request->name;
+        $text = $request->text;
+
+        Mail::to(User::first())->send(new ContactUs($from, $name, $text));
+
+        return redirect()->route('shop')->with('message', 'Your Message Was send');
     }
 }

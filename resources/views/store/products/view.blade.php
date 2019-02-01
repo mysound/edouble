@@ -42,6 +42,9 @@
 						<li><span>Release Date: </span>{{ $product->release_date or "" }}</li> 
 						<li><span>UPC: </span>{{ $product->upc or "" }}</li> 
 						<li class="{{ $product->quantity ? 'instock' : 'outofstok' }}"><span>{{ $product->quantity ? 'In Stock' : 'Out of Stock' }}</span></li>
+						@if(Auth::user() && Auth::user()->admin)
+								<li><a href="{{ route('admin.product.edit', $product->id) }}"><span class="glyphicon glyphicon-edit"></span> Revise this item</a></li>
+						@endif
 					</ul>
 				</div>
 			</div>
@@ -78,7 +81,7 @@
 		</div>
 	</div>
 	<div class="container b-also__line">
-		<span class="h3">Customers who bought The Division Bell, also bought:</span>
+		<span class="h3">Customers who bought {{ $product->title }}, also bought:</span>
 		<div class="row" style="margin-top: 15px;">
 			@foreach($items as $item)
 				<div class="col-xs-6 col-sm-6 col-md-3">
