@@ -40,7 +40,7 @@
 				<div class="col-md-4">
 					<div class="socials_media">
 						<a href="https://www.instagram.com/doublesides_inc/" class="icon-in"></a>
-						<a href="https://www.facebook.com/dbsides/" class="icon-fb"></a>
+						<a href="https://www.facebook.com/Doublesides-INC-225601578393253/" class="icon-fb"></a>
 						<a href="https://www.paypal.com" class="icon-paypal"></a>
 					</div>
 				</div>
