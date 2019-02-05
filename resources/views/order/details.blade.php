@@ -64,7 +64,7 @@
 					@if($order->shipping_no)
 						<span><strong>Tracking number:</strong> {{ $order->shipping_no }}</span><hr>
 						<span><strong>Shipping status:</strong> Shipped</span><br>
-						<span><strong>Shipping carrier:</strong> UPS</span>
+						<span><strong>Shipping carrier:</strong> USPS</span>
 					@else
 						<span class="text-success"><strong>Awaiting shipment</strong></span>
 					@endif

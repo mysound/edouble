@@ -70,7 +70,7 @@
 									<a href="{{ route('admin.tracking.edit', $order->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
 									<span><strong>Tracking number: </strong>{{ $order->shipping_no }}</span><hr>	
 									<span><strong>Shipping status:</strong> Shipped</span><br>
-									<span><strong>Shipping carrier:</strong> UPS</span>
+									<span><strong>Shipping carrier:</strong> USPS</span>
 								@else
 									<span class="text-success"><strong>Awaiting shipment</strong></span><br>
 									<a href="{{ route('admin.addtracking', $order->id) }}">Add tracking</a>
