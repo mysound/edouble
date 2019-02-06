@@ -38,6 +38,9 @@ return [
     'paypal' => [
         'id' => env('PAYPAL_ID'),
         'secret' => env('PAYPAL_SECRET'),
+        'settings' => [
+            'mode' => env('PAYPAL_MODE', 'sandbox'),
+        ],
     ],
 
 ];

@@ -33,6 +33,10 @@ class PaymentController extends Controller
 	        )
 	    );
 
+	    $apiContext->setConfig(
+	    	config('services.paypal.settings')
+	    );
+
     	$payer = new Payer();
 		$payer->setPaymentMethod("paypal");
 
@@ -109,6 +113,10 @@ class PaymentController extends Controller
 	        	config('services.paypal.id'),
 	        	config('services.paypal.secret')
 	        )
+	    );
+
+	    $apiContext->setConfig(
+	    	config('services.paypal.settings')
 	    );
 
 	    $paymentId = $request->paymentId;
