@@ -37,11 +37,6 @@
 						<span class="col-md-10"><strong>Order total</strong></span>
 						<span class="col-md-2 text-right"><strong>${{ $order->total }}</strong></span><br>
 					</p>
-					{{-- <form method="POST" action="{{ route('create-payment') }}">
-						{{ csrf_field() }}
-						<input type="hidden" name="orderID" value="{{ $order->id }}">
-						<input type="submit" value="Pay Now" class="btn btn-success">
-					</form> --}}
 					<div id="paypal-button"></div>
 				</div>
 			</div>
@@ -76,7 +71,7 @@
 	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
 	<script>
 		paypal.Button.render({
-			env: 'sandbox', // Or 'production'
+			env: 'production', // 'production' Or 'sandbox'
 			style: {			
 				size: 'medium',
 				color: 'gold',
