@@ -7,7 +7,7 @@
 		</div>
 		<div><br>
 			<h3>What is Doublesides?</h3>
-			<p>Doublesides.com is retailed online store specialized in DVDs, Blu-rays, CDs and different types of Vinyls including very limited editions. Located currently in New York City.</p>
+			<p>dbsides.com is retailed online store specialized in DVDs, Blu-rays, CDs and different types of Vinyls including very limited editions. Located currently in New York City.</p>
 			<h3>Handling/Shipping</h3>
 			<p><strong>Delivery takes about 4-7 days for USPS Media Mail.</strong></p>
 			<p><strong>Handling time usually takes about 4-10 business day to process an order. Preorders can take up to 30 days to be processed.</strong></p>
