@@ -63,6 +63,9 @@
 <label for="">Price</label>
 <input class="form-control" type="text" name="price" placeholder="price" value="{{ $product->price or "" }}" required="">
 
+<label for="">Quantity</label>
+<input class="form-control" type="text" name="quantity" placeholder="quantity" value="{{ $product->quantity or "" }}" required="">
+
 <label for="">Meta Title</label>
 <input class="form-control" type="text" name="meta_title" placeholder="meta title" value="{{ $product->meta_title or "" }}" >
 

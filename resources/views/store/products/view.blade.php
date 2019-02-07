@@ -4,7 +4,7 @@
 
 	<div class="container b-item__line">
 		<div class="b-item__title">
-			<h1>{{ $product->title }} - {{ $product->category->title }} Record by <a href="#">{{ $product->name }}</a></h1>
+			<h1>{{ $product->title }} - {{ $product->category->title }} by <a href="/store?searchField={{ $product->name }}">{{ $product->name }}</a></h1>
 		</div>
 		<div class="row" style="margin-top: 15px;">
 			<div class="col-sm-6 col-md-5 b-item-gallery">
