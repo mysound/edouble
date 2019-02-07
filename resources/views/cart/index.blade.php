@@ -66,7 +66,7 @@
 							</td>
 							<td>
 								<a href="{{ route('product.view', $product->model->id) }}">{{ $product->name }}</a><br>
-								<p><small class="text-danger"><em>Usually ships in 7-10 business days</em></small></p>
+								<p><small class="text-danger"><em>Usually ships in 4-10 business days</em></small></p>
 							</td>
 							<td>{{ $product->price }}</td>
 							<td>{{ $product->subtotal }}</td>
