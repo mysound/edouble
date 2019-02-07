@@ -28,7 +28,7 @@
 				<li>You may give us information about you by filling in forms on our website or at any of our sites or through the purchase of products / services or by corresponding with us by telephone, email or otherwise.</li>
 				<li>This includes information you provide when you subscribe to our newsletters or mailouts, or place an order on one of our sites.</li>
 				<li>The information you may give us may include your name, email address, postal address and telephone number and financial and credit card information.</li>
-				<li>Information we collect about you on Doubleside website</li>
+				<li>Information we collect about you on dbsides.com website</li>
 			</ul>
 			<h3>With regard to each of your visits to our site we may automatically collect the following information:</h3>
 			<ul>
@@ -114,11 +114,11 @@
 			<h3>How to manage cookies</h3>
 			<p>You have the ability to accept or decline cookies by modifying the settings in your browser. However, you may not be able to use all the interactive features of our site if cookies are disabled. You may wish to visit www.aboutcookies.org which contains comprehensive information on how to modify the cookie settings on a wide variety of browsers. You will also find details on how to delete cookies from your computer as well as more general information about cookies. For information on how to do this on the browser of your mobile phone or tablet you will need to refer to your device manual. If you’d like to opt out of advertising cookies, please go to the Network Advertising Initiative website http://www.networkadvertising.org/ (opens in a new window – please note that we are not responsible for the content of external websites).</p>
 			<h3>Acknowledgement</h3>
-			<p>By completing forms provided by deepdiscount.com and providing personal information through the Website, through any means, and by using the Website and services contained therein, You hereby represent and warrant that:</p>
+			<p>By completing forms provided by dbsides.com and providing personal information through the Website, through any means, and by using the Website and services contained therein, You hereby represent and warrant that:</p>
 			<ul>
-				<li>You have read, understand and agree to doublesides.com's Privacy Policy;</li>
-				<li>You are an actual person of at least 18 years of age, You have the right to provide the information that You submit to deepdiscount.com, and the information You submit is accurate, complete and truthful; and</li>
-				<li>If You do not agree to the terms of this Privacy Policy, then do not provide Your information to deepdiscount.com through any means. In such case, deepdiscount.com is relieved of any of its obligations to You as set forth in this Privacy Policy.</li>
+				<li>You have read, understand and agree to dbsides.com's Privacy Policy;</li>
+				<li>You are an actual person of at least 18 years of age, You have the right to provide the information that You submit to dbsides.com, and the information You submit is accurate, complete and truthful;</li>
+				<li>If You do not agree to the terms of this Privacy Policy, then do not provide Your information to dbsides.com through any means. In such case, dbsides.com is relieved of any of its obligations to You as set forth in this Privacy Policy.</li>
 			</ul>
 		</div>
 	</div>	
