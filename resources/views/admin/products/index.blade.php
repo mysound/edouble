@@ -20,10 +20,13 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
+				<a href="{{ route('admin.download') }}" class="btn btn-warning">Download All... <i class="fa fa-download"></i></a>
+			</div>
+			<div class="col-md-2">
 				<a href="{{ route('admin.upload.create') }}" class="btn btn-success pull-right"><i class="fa fa-upload"></i> ...Excel</a>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 				<a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add Product</a>
 			</div>
 		</div>

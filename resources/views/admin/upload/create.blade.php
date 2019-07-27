@@ -11,6 +11,8 @@
 		<form method="POST" class="form-horizontal" action="{{ route('admin.upload.store') }}" enctype="multipart/form-data">
 			{{ csrf_field() }}
 
+			<label>SKU Title: <input type="text" name="skutitle"></label>
+			<hr>
 			<input class="form-control" type="file" name="importExcel" id="importExcel">
 			<hr>
 			<input class="btn btn-primary" type="submit" value="Upload">
