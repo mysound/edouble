@@ -14,7 +14,7 @@
 
 	<div class="container">
 		<div class="row splitterline-bottom">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<span class="h3 searchres_title">Search Result: {{ $products->total() }}</span>
 			</div>
 			{{-- <div class="col-md-5">
@@ -33,7 +33,7 @@
 					</form>
 				</div>
 			</div> --}}
-			<div class="visible-md visible-lg col-md-9 pagenav">
+			<div class="visible-md visible-lg col-md-8 pagenav">
 				@if ($products->hasPages())
 				    <ul class="pagination pagination">
 				        {{-- Previous Page Link --}}

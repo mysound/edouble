@@ -40,48 +40,55 @@ class ProductsImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
         if(strlen($upc) < 13) {
            $upc = (strlen($upc) < 12) ? '00'.$upc : '0'.$upc;
         }
-        
-        $product = Product::updateOrCreate(
-            [
-                'upc'   => $upc
-            ],
-            [
-                'category_id' => $row['category'],
-                'sku' => $this->skutitle.'-'.$upc,
-                'name' => $row['artist'],
-                'title' => $row['title'],
-                'brand_id' => $this->brand($row['label']),
-                'short_description' => $row['short'],
-                'slug' => $row['artist'].'-'.$upc,
-                'price' => $this->price($row['price']),
-                'quantity' => $row['quantity'],
-                'description' => $row['description'],
-                'release_date' => $this->transformDate($row['date'])
-            ]
-        );
-        
-        if(!$product->images->first()) {
-            if (isset($row['image'])) {
-                $headers = get_headers($row['image']);
-                if (str_contains($headers[0], '200')) {
-                    //$imagetitle = substr($row['image'], strrpos($row['image'], '/') + 1);
-                    $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
-                    $picture = ImageInt::make($row['image'])
-                        ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
-                        ->encode('jpg',100);
-                    $thumbnail = ImageInt::make($row['image'])
-                        ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
-                        ->encode('jpg',100);
-                    Storage::disk('images')->put($imagetitle, $picture);
-                    Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
-                    $picture->destroy();
-                    $thumbnail->destroy();
-                    $product->images()->create([
-                        'title' => $imagetitle
-                    ]);
+
+        $sku = $this->skutitle.'-'.$upc;
+
+        $product = Product::where('sku', $sku)->first();
+
+        if($product) {
+            $product->quantity = $row['quantity'];
+            $product->price = $this->price($row['price']);
+            if(!$product->images->first()) {
+                if (isset($row['image'])) {
+                    $headers = get_headers($row['image']);
+                    if (str_contains($headers[0], '200')) {
+                        $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
+                        $picture = ImageInt::make($row['image'])
+                            ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
+                            ->encode('jpg',100);
+                        $thumbnail = ImageInt::make($row['image'])
+                            ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
+                            ->encode('jpg',100);
+                        Storage::disk('images')->put($imagetitle, $picture);
+                        Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
+                        $picture->destroy();
+                        $thumbnail->destroy();
+                        $product->images()->create([
+                            'title' => $imagetitle
+                        ]);
+                    }
                 }
             }
+        } else {
+            $product = new Product(
+                [
+                    'upc'   => $upc,            
+                    'category_id' => $row['category'],
+                    'sku' => $sku,
+                    'name' => $row['artist'],
+                    'title' => $row['title'],
+                    'brand_id' => $this->brand($row['label']),
+                    'short_description' => $row['short'],
+                    'slug' => $row['artist'].'-'.$upc,
+                    'price' => $this->price($row['price']),
+                    'quantity' => $row['quantity'],
+                    'description' => $row['description'],
+                    'release_date' => $this->transformDate($row['date'])
+                ]
+            );
         }
+        
+        
 
         return $product;
     }
