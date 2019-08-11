@@ -52,20 +52,23 @@ class ProductsImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                 if (isset($row['image'])) {
                     $headers = get_headers($row['image']);
                     if (str_contains($headers[0], '200')) {
-                        $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
-                        $picture = ImageInt::make($row['image'])
-                            ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
-                            ->encode('jpg',100);
-                        $thumbnail = ImageInt::make($row['image'])
-                            ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
-                            ->encode('jpg',100);
-                        Storage::disk('images')->put($imagetitle, $picture);
-                        Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
-                        $picture->destroy();
-                        $thumbnail->destroy();
-                        $product->images()->create([
-                            'title' => $imagetitle
-                        ]);
+                        $imageType = exif_imagetype($row['image']);
+                        if ($imageType <= 3) {
+                            $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
+                            $picture = ImageInt::make($row['image'])
+                                ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
+                                ->encode('jpg',100);
+                            $thumbnail = ImageInt::make($row['image'])
+                                ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
+                                ->encode('jpg',100);
+                            Storage::disk('images')->put($imagetitle, $picture);
+                            Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
+                            $picture->destroy();
+                            $thumbnail->destroy();
+                            $product->images()->create([
+                                'title' => $imagetitle
+                            ]);
+                        }
                     }
                 }
             }
