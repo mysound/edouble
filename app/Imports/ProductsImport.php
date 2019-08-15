@@ -54,20 +54,45 @@ class ProductsImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                     if (str_contains($headers[0], '200')) {
                         $imageType = exif_imagetype($row['image']);
                         if ($imageType <= 3) {
-                            $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
-                            $picture = ImageInt::make($row['image'])
-                                ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
-                                ->encode('jpg',100);
-                            $thumbnail = ImageInt::make($row['image'])
-                                ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
-                                ->encode('jpg',100);
-                            Storage::disk('images')->put($imagetitle, $picture);
-                            Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
-                            $picture->destroy();
-                            $thumbnail->destroy();
-                            $product->images()->create([
-                                'title' => $imagetitle
+
+                            $ch = curl_init($row['image']);
+
+                            curl_setopt_array($ch,[
+                                CURLOPT_TIMEOUT => 60,
+                                CURLOPT_FOLLOWLOCATION => 1,
+                                CURLOPT_RETURNTRANSFER => 1,
+                                CURLOPT_NOPROGRESS => 0,
+                                CURLOPT_BUFFERSIZE => 1024,
+                                CURLOPT_PROGRESSFUNCTION => function ($ch, $dwnldSize, $dwnld, $upldSize, $upld) {
+                                    if ($dwnld > 1024 * 1024 * 5) {
+                                        return -1;
+                                    }
+                                },
+                                CURLOPT_SSL_VERIFYPEER => 1,
+                                CURLOPT_SSL_VERIFYHOST => 2,
                             ]);
+                            $raw   = curl_exec($ch);
+                            $info  = curl_getinfo($ch);
+                            $error = curl_errno($ch);
+
+                            curl_close($ch);
+
+                            if(!$error) {
+                                $imagetitle = substr($product->name, 0, 1).$product->upc.'.jpg';
+                                $picture = ImageInt::make($row['image'])
+                                    ->resize(500, null, function ($constraint) { $constraint->aspectRatio(); } )
+                                    ->encode('jpg',100);
+                                $thumbnail = ImageInt::make($row['image'])
+                                    ->resize(170, null, function ($constraint) { $constraint->aspectRatio(); } )
+                                    ->encode('jpg',100);
+                                Storage::disk('images')->put($imagetitle, $picture);
+                                Storage::disk('thumbnails')->put($imagetitle, $thumbnail);
+                                $picture->destroy();
+                                $thumbnail->destroy();
+                                $product->images()->create([
+                                    'title' => $imagetitle
+                                ]);
+                            }
                         }
                     }
                 }
@@ -90,8 +115,6 @@ class ProductsImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
                 ]
             );
         }
-        
-        
 
         return $product;
     }
