@@ -12,8 +12,8 @@ class IndexController extends Controller
     public function index()
     {
     	return view('store.index', [
-    		'lps' => Product::has('images')->where('category_id', '2')->orderBy('created_at', 'desc')->take(12)->get(),
-    		'discs' => Product::has('images')->where('category_id', '3')->take(4)->get(),
+    		'lps' => Product::where('category_id', '2')->orderBy('created_at', 'desc')->take(12)->get(),
+    		'discs' => Product::where('category_id', '3')->take(4)->get(),
     		'slides' => Slide::all()
     	]);
     }
