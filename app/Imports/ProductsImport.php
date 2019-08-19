@@ -30,7 +30,8 @@ class ProductsImport implements ToModel, WithHeadingRow, WithChunkReading, Shoul
         try {
             return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
         } catch (\ErrorException $e) {
-            return \Carbon\Carbon::createFromFormat($format, $value);
+            //return \Carbon\Carbon::createFromFormat($format, $value);
+            return \Carbon\Carbon::parse($value)->format($format);
         }
     }
 
