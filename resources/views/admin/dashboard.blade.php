@@ -26,22 +26,48 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-6">
-				<a href="{{ route('admin.category.create') }}" class="btn btn-block btn-default">Add New Category</a>
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">Last Category</h4>
+				<span class="btn btn-block btn-default">Downloads</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">All Items</h4>
+					<p class="list-group-item-text">
+						Amount Items ({{ $countpro }})
+						<span>@if($allProducts)<a href="{{ route('admin.download', ['fileTitle' => 'Products']) }}">{{ $allProducts }} <i class="fa fa-download"></i></a>@endif</span>
+						<a href="{{ route('admin.export', ['skuTitle' => '']) }}" class="pull-right"><i class="fa fa-refresh"></i></a>
+					</p>
+				</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">Redeye</h4>
 					<p class="list-group-item-text">
 						Amount Items
 					</p>
-				</a>
+				</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">Secretly</h4>
+					<p class="list-group-item-text">
+						Amount Items
+					</p>
+				</span>
 			</div>
 			<div class="col-sm-6">
-				<a href="{{ route('admin.product.create') }}" class="btn btn-block btn-default">Add New Item</a>
-				<a href="#" class="list-group-item">
-					<h4 class="list-group-item-heading">Last Item</h4>
+				<span class="btn btn-block btn-default">Sales</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">All Items</h4>
 					<p class="list-group-item-text">
-						Category
+						Amount Items
 					</p>
-				</a>
+				</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">Redeye</h4>
+					<p class="list-group-item-text">
+						Amount Items
+					</p>
+				</span>
+				<span class="list-group-item">
+					<h4 class="list-group-item-heading">Secretly</h4>
+					<p class="list-group-item-text">
+						Amount Items
+					</p>
+				</span>
 			</div>
 		</div>
 	</div>

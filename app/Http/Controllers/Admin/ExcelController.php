@@ -7,6 +7,7 @@ use App\Exports\ProductsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Storage;
 
 class ExcelController extends Controller
 {
@@ -15,9 +16,21 @@ class ExcelController extends Controller
     	return view('admin.upload.create');
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new ProductsExport, 'products.xlsx');
+        $skuTitle = 'Products';
+        if ($request->skuTitle) {
+            $skuTitle = $request->skuTitle;
+        }
+
+        (new ProductsExport($request->skuTitle))->queue($skuTitle.'.xlsx', 'files');
+
+        return back()->withSuccess('Export started!');
+    }
+
+    public function download(Request $request)
+    {
+        return response()->download('storage/files/'.$request->fileTitle.'.xlsx', $request->fileTitle.'.xlsx');
     }
 
     public function import(Request $request)
