@@ -9,15 +9,24 @@ use App\Mail\TrackingNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use Storage;
+use DateTime;
 
 class DashboardController extends Controller
 {
     //Dashboard
     public function dashboard() 
     {
+        $lastmodified = false;
+        if(Storage::disk('files')->exists('products.xlsx')) {
+            $time = Storage::disk('files')->lastModified('products.xlsx');
+            $lastmodified = DateTime::createFromFormat("U", $time);
+            $lastmodified = $lastmodified->format('Y-m-d H:i:s');
+        }
     	return view('admin.dashboard', [
     		'countpro' => Product::all()->count(),
     		'countord' => Order::all()->count(),
+            'allProducts' => $lastmodified,
             'countsales' => Transaction::where('sale_status', 'completed')->count()
     	]);
     }
