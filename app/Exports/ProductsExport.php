@@ -16,14 +16,19 @@ class ProductsExport implements FromQuery, ShouldQueue, WithHeadings
     */
     use Exportable;
 
-    public function __construct($skuTitle)
+    public function __construct($skuTitle = '', $year = '', $month = '')
     {
         $this->skuTitle = $skuTitle;
+        $this->year = $year;
+        $this->month = $month;
     }
     
     public function query()
     {
-        return Product::query()->where('sku', 'like', $this->skuTitle.'%');
+        return Product::query()
+            ->where('sku', 'like', $this->skuTitle.'%')
+            ->whereYear('release_date', '=', $this->year)
+            ->whereMonth('release_date', '=', $this->month);
     }
 
     public function headings(): array

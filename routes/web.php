@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 	Route::get('/order/details/{order}', 'DashboardController@orderDetails')->name('admin.order.details');
 	Route::get('/order/addtracking/{order}/edit', 'DashboardController@editTracking')->name('admin.tracking.edit');
 	Route::put('/order/addtracking/{order}', 'DashboardController@updateTracking')->name('admin.tracking.update');
+	Route::post('/', 'ProductsController@nullifyQuantity')->name('admin.nullify');
 });
 
 Route::get('/', 'IndexController@index')->name('shop');

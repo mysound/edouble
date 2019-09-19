@@ -9,6 +9,7 @@ use App\Ganre;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
 {
@@ -152,5 +153,14 @@ class ProductsController extends Controller
         $product->delete();
 
         return redirect()->route('admin.product.index');
+    }
+
+    public function nullifyQuantity(Request $request)
+    {
+        $products = DB::table('products')
+                        ->where('sku', 'LIKE', $request->catTitle.'%')
+                        ->update(['quantity' => 0]);
+
+        return back()->withSuccess('Success');
     }
 }

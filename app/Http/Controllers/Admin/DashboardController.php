@@ -8,6 +8,7 @@ use App\Transaction;
 use App\Mail\TrackingNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Storage;
 use DateTime;
@@ -17,18 +18,32 @@ class DashboardController extends Controller
     //Dashboard
     public function dashboard() 
     {
-        $lastmodified = false;
-        if(Storage::disk('files')->exists('products.xlsx')) {
-            $time = Storage::disk('files')->lastModified('products.xlsx');
-            $lastmodified = DateTime::createFromFormat("U", $time);
-            $lastmodified = $lastmodified->format('Y-m-d H:i:s');
-        }
+        $jobs = false;
+        DB::select('select * from jobs') ? $jobs = true : $jobs = false;
+
+        $allProducts = $this->exelfileExists('products.xlsx');
+        $redeye = $this->exelfileExists('REDEYE.xlsx');
+        $secretly = $this->exelfileExists('SECRETLY.xlsx');
     	return view('admin.dashboard', [
     		'countpro' => Product::all()->count(),
     		'countord' => Order::all()->count(),
-            'allProducts' => $lastmodified,
+            'allProducts' => $allProducts,
+            'redeye' => $redeye,
+            'secretly' => $secretly,
+            'jobs' => $jobs,
             'countsales' => Transaction::where('sale_status', 'completed')->count()
     	]);
+    }
+
+    public function exelfileExists($title)
+    {
+        $lastmodified = false;
+        if(Storage::disk('files')->exists($title)) {
+            $time = Storage::disk('files')->lastModified($title);
+            $lastmodified = DateTime::createFromFormat("U", $time);
+            $lastmodified = $lastmodified->format('Y-m-d H:i:s');
+        }
+        return $lastmodified;
     }
 
     public function orders() 

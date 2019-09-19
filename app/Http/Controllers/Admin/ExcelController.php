@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Exports\ProductsExport;
+use App\Exports\ItemsExport;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
@@ -18,14 +19,17 @@ class ExcelController extends Controller
 
     public function export(Request $request)
     {
-        $skuTitle = 'Products';
-        if ($request->skuTitle) {
-            $skuTitle = $request->skuTitle;
+        if($request->year and $request->month) {
+            return (new ItemsExport($request->skuTitle, $request->year, $request->month))->download('Items.xlsx');
+        } else {
+            /*$skuTitle = 'Products';
+            if ($request->skuTitle) {
+                $skuTitle = $request->skuTitle;
+            }
+            (new ProductsExport($request->skuTitle, $request->year, $request->month))->queue($skuTitle.'.xlsx', 'files');*/
+            
+            return back()->withSuccess('Export started!');
         }
-
-        (new ProductsExport($request->skuTitle))->queue($skuTitle.'.xlsx', 'files');
-
-        return back()->withSuccess('Export started!');
     }
 
     public function download(Request $request)
