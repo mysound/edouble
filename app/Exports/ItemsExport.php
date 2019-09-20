@@ -29,7 +29,9 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
 
     public function map($row): array
     {
-    	$title = $row->name.' - '.$row->title.' () New';
+    	$title = $row->name.' - '.$row->title.' ('.$row->category->title.') New';
+
+        $description = '<h1>'.$title.'</h1><ul><li>Label: '.$row->brand->title.'</li><li>'.$row->short_description.'</li><li>Format: '.$row->category->title.'</li><li>Release Date: '.$row->release_date.'</li><li>UPC: '.$row->upc.'</li></ul><p>'.$row->description.'</p>';
 
         $image = '';
         if($row->images->first()) {
@@ -44,14 +46,14 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
             $globalShipping = '1';
         }
         return [
-            $row->id,
+            'Add',
             $row->category_id,
             $row->upc,
             $title,
-            $row->description,
+            $description,
             '1000',
             $image,
-            '1',
+            $row->quantity,
             'FixedPrice',
             $row->price,
             'GTC',
