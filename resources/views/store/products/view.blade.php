@@ -40,8 +40,12 @@
 						<li><span>Genre: </span>{{ $product->ganre->title or "" }}</li>
 						<li><span>Description: </span>{{ $product->short_description or "" }}</li>
 						<li><span>Release Date: </span>{{ $product->release_date or "" }}</li> 
-						<li><span>UPC: </span>{{ $product->upc or "" }}</li> 
-						<li class="{{ $product->quantity ? 'instock' : 'outofstok' }}"><span>{{ $product->quantity ? 'In Stock' : 'Out of Stock' }}</span></li>
+						<li><span>UPC: </span>{{ $product->upc or "" }}</li>
+						@if($preorder)
+							<li class="instock"><span>Pre-Order Now</span></li>
+						@else
+							<li class="{{ $product->quantity ? 'instock' : 'outofstok' }}"><span>{{ $product->quantity ? 'In Stock' : 'Out of Stock' }}</span></li>
+						@endif
 						@if(Auth::user() && Auth::user()->admin)
 								<li><a href="{{ route('admin.product.edit', $product->id) }}"><span class="glyphicon glyphicon-edit"></span> Revise this item</a></li>
 						@endif
