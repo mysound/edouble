@@ -45,6 +45,7 @@ Route::resource('/user/addresses', 'AddressesController');
 
 Route::get('/store/view/{product}', 'StoreController@itemView')->name('product.view');
 Route::get('/store', 'StoreController@shope');
+Route::get('/preorder', 'StoreController@preorder')->name('store.preorder');
 Route::get('/store/{ganre}', 'StoreController@ganreSearch');
 Route::get('/store', 'StoreController@search')->name('store.search');
 

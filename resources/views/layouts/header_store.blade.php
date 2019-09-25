@@ -20,6 +20,7 @@
 						</ul>
 					</li>
 					<li><a href="{{ url('/store') }}">Shop</a></li>
+					<li><a href="{{ route('store.preorder') }}">Preorder</a></li>
 					<li><a href="{{ route('store.about') }}">About</a></li>
 					@if(Auth::user())
 						<li role="presentation" class="dropdown active dropdown">

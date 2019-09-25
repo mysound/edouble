@@ -7,13 +7,16 @@ use App\User;
 use App\Mail\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class StoreController extends Controller
 {
     public function itemView(Product $product)
     {
+        $preorder = $this->preorderNow($product->release_date);
     	return view('store.products.view', compact('product'), [
-    		'items' => Product::all()->random(4)
+    		'items' => Product::all()->random(4),
+            'preorder' => $preorder
     	]);
     }
 
@@ -22,6 +25,11 @@ class StoreController extends Controller
     	return view('store.search', [
     		'products' => Product::paginate(12)
     	]);
+    }
+
+    public function preorder()
+    {
+        return redirect()->route('store.search', ['preorder' => true]);
     }
 
     public function ganreSearch($id)
@@ -33,12 +41,15 @@ class StoreController extends Controller
             'category_id' => '',
             'searchField' => '',
             'min_price' => '',
-            'max_price' => ''
+            'max_price' => '',
+            'preorder' => ''
         ]);
     }
 
     public function search(Request $request) 
     {
+        $date = Carbon::now()->format('Y-m-d');
+
         $min_price = $request->min_price ? $request->min_price : 0;
         $max_price = $request->max_price ? $request->max_price : 100000;
         
@@ -70,11 +81,17 @@ class StoreController extends Controller
                                         ->whereBetween('price', [$min_price, $max_price])
                                         ->paginate(12);
             } else {
-                $products = Product::where('name', 'LIKE', '%' .$request->searchField. '%')
-                                        ->whereBetween('price', [$min_price, $max_price])
-                                        ->orwhere('title', 'LIKE', '%' .$request->searchField. '%')
-                                        ->whereBetween('price', [$min_price, $max_price])
-                                        ->paginate(12);
+                if ($request->preorder) {
+                    $products = Product::where('release_date', '>', $date)
+                                            ->paginate(12);
+
+                } else {
+                    $products = Product::where('name', 'LIKE', '%' .$request->searchField. '%')
+                                            ->whereBetween('price', [$min_price, $max_price])
+                                            ->orwhere('title', 'LIKE', '%' .$request->searchField. '%')
+                                            ->whereBetween('price', [$min_price, $max_price])
+                                            ->paginate(12);
+                }
             }
         }
 
@@ -83,7 +100,8 @@ class StoreController extends Controller
                             'category_id' => $request->category_id,
                             'ganre_id' => $request->ganre_id,
                             'min_price' => $request->min_price,
-                            'max_price' => $request->max_price
+                            'max_price' => $request->max_price,
+                            'preorder' => $request->preorder
                         ]);
 
     	return view('store.search', [
@@ -137,5 +155,15 @@ class StoreController extends Controller
         Mail::to(User::first())->send(new ContactUs($from, $name, $text));
 
         return redirect()->route('shop')->with('message', 'Your Message Was send');
+    }
+
+    public function preorderNow($date)
+    {
+        $dateNow = Carbon::now()->format('Y-m-d');
+        if($dateNow <= $date) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

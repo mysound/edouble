@@ -17,22 +17,6 @@
 			<div class="col-md-4">
 				<span class="h3 searchres_title">Search Result: {{ $products->total() }}</span>
 			</div>
-			{{-- <div class="col-md-5">
-				<div class="b-sortby">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label class="control-label col-sm-4" for="sortby1">Sort By</label>
-							<div class="col-sm-8">
-								<select class="form-control" id="sortby1">
-									<option>Popularity</option>
-									<option>Lowest Price</option>
-									<option>Highest Price</option>
-								</select>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div> --}}
 			<div class="visible-md visible-lg col-md-8 pagenav">
 				@if ($products->hasPages())
 				    <ul class="pagination pagination">
