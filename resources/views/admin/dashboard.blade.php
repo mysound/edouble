@@ -77,7 +77,7 @@
 						</div>
 						<div class="form-group">
 							<label class="sr-only" for="month">Month</label>
-							<input type="text" class="form-control" name="month" id="month" placeholder="Month" required="">
+							<input type="text" class="form-control" name="month" id="month" placeholder="Month">
 						</div>
 						<div class="form-group">
 							<select class="form-control" name="skuTitle">

@@ -12,7 +12,7 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
 {
    use Exportable;
 
-    public function __construct($skuTitle = '', int $year = 2019, int $month = 01)
+    public function __construct($skuTitle = '', int $year, int $month)
     {
         $this->skuTitle = $skuTitle;
         $this->year = $year;
@@ -21,10 +21,16 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
     
     public function query()
     {
-        return Product::query()
+        if($this->month == 0) {
+            return Product::query()
             ->where('sku', 'like', $this->skuTitle.'%')
-            ->whereYear('release_date', '=', $this->year)
-            ->whereMonth('release_date', '=', $this->month);
+            ->whereYear('release_date', '=', $this->year);
+        } else {
+            return Product::query()
+                ->where('sku', 'like', $this->skuTitle.'%')
+                ->whereYear('release_date', '=', $this->year)
+                ->whereMonth('release_date', '=', $this->month);
+        }
     }
 
     public function map($row): array
