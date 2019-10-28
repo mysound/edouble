@@ -19,8 +19,14 @@ class ExcelController extends Controller
 
     public function export(Request $request)
     {
-        if($request->year and $request->month) {
-            return (new ItemsExport($request->skuTitle, $request->year, $request->month))->download('Items.xlsx');
+        $year = $request->year;
+        $month = 0;
+        if($request->month) {
+            $month = $request->month;
+        }
+
+        if($request->year) {
+            return (new ItemsExport($request->skuTitle, $year, $month))->download('Items.xlsx');
         } else {
             /*$skuTitle = 'Products';
             if ($request->skuTitle) {
