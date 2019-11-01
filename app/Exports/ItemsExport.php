@@ -35,11 +35,27 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
 
     public function map($row): array
     {
+        $category = $row->category_id;
+        switch ($category):
+        case ($category == 2):
+            $category = 176985;
+            break;
+        case ($category == 3):
+            $category = 176984;
+            break;
+        case ($category == 5):
+            $category = 176983;
+            break;
+        case ($category == 7):
+            $category = 617;
+            break;
+        endswitch;
+
     	$title = $row->name.' - '.$row->title.' ('.$row->category->title.') New';
 
         $description = '<h1>'.$title.'</h1><ul><li>Label: '.$row->brand->title.'</li><li>'.$row->short_description.'</li><li>Format: '.$row->category->title.'</li><li>Release Date: '.$row->release_date.'</li><li>UPC: '.$row->upc.'</li></ul><p>'.$row->description.'</p>';
 
-        $image = '';
+        $image = 'https://dbsides.com/storage/images/noimage.png';
         if($row->images->first()) {
             $image = 'https://dbsides.com/storage/images/'.$row->images->first()->title;
         }
@@ -53,7 +69,7 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
         }
         return [
             'Add',
-            $row->category_id,
+            $category,
             $row->upc,
             $title,
             $description,
