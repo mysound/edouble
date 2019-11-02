@@ -24,10 +24,12 @@ class ItemsExport implements FromQuery, WithHeadings, WithMapping
         if($this->month == 0) {
             return Product::query()
             ->where('sku', 'like', $this->skuTitle.'%')
+            ->where('quantity', '>=', 1)
             ->whereYear('release_date', '=', $this->year);
         } else {
             return Product::query()
                 ->where('sku', 'like', $this->skuTitle.'%')
+                ->where('quantity', '>=', 1)
                 ->whereYear('release_date', '=', $this->year)
                 ->whereMonth('release_date', '=', $this->month);
         }
