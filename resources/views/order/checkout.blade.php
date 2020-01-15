@@ -37,7 +37,7 @@
 						<span class="col-md-10"><strong>Order total</strong></span>
 						<span class="col-md-2 text-right"><strong>${{ $order->total }}</strong></span><br>
 					</p>
-					<div id="paypal-button"></div>
+					<a href="{{ route('store.contact') }}">Help & Contact</a>
 				</div>
 			</div>
 			<div class="col-md-4">
@@ -67,44 +67,3 @@
 	</div>
 @endsection
 
-@section('script')
-	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-	<script>
-		paypal.Button.render({
-			env: 'production', // 'production' Or 'sandbox'
-			style: {			
-				size: 'medium',
-				color: 'gold',
-				shape: 'rect',
-				label: 'paypal'
-			},
-			// Set up the payment:
-			// 1. Add a payment callback
-			payment: function(data, actions) {
-			// 2. Make a request to your server
-				return actions.request.post('/api/create-payment/', {
-					orderID: {{ $order->id }}
-				})
-					.then(function(res) {
-					// 3. Return res.id from the response
-					return res.id;
-			    });
-			},
-			// Execute the payment:
-			// 1. Add an onAuthorize callback
-			onAuthorize: function(data, actions) {
-			// 2. Make a request to your server
-				return actions.request.post('/api/execute-payment/', {
-					paymentId: data.paymentID,
-					PayerID:   data.payerID,
-					orderID: {{ $order->id }}
-				})
-					.then(function(res) {
-						window.location.replace("{{ route('payment-approved')}}");
-						//alert('Thank you for your purchase!');
-						// 3. Show the buyer a confirmation message.
-					});
-			}
-		}, '#paypal-button');
-	</script>
-@endsection
